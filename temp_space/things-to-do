@@ -1,0 +1,24 @@
+2018-12-25
+==========
+
+Go to github.com
+1. change the default branch to development
+2. Create a folder with name documentation under the folder traffic_sign_svm
+
+In each machine,
+3. Setup Github Desktop
+4. Setup pycharm edu
+
+    In Github desktop,
+    5. Checkout development branch
+    6. Create a new branch with name 'development_<your_name>'
+
+    In Pycharm,
+    7. Create a file with name 'file_<your_name>' under temp_space folder
+
+    In Github desktop,
+    8. Only select the recently created file, add any commit message and click 'commit to development_<your_name>' button
+    9. Push your changes to origin
+
+    Login to github.com
+    9. Create a pull request for your branch with base branch as master and add me as a reviewer
