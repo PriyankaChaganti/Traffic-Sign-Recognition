@@ -1,4 +1,44 @@
-(pending) Deadline: 2019-Jan-18
+
+(pending) Deadline: 2019-Jan-20
+==================================
+(One of you)
+Create a new branch based on development
+Add code to main.py that does the following:
+    opens one random image from training_data and displays the image
+    opens one random image from test_data and displays the image
+    hint: use cv2 helper functions
+
+
+
+(pending) Deadline: 2019-Jan-17
+==================================
+(One of you)
+Create a new branch based on development.
+
+Create a folder 'data' under 'traffic_sign_svm'. In the data folder, create two folders 'training_data' and 'test_data'.
+You will see the new folders in the github desktop. Add the the path of the data folder to .gitignore. Github desktop
+will now ignore the changes.
+
+Open a PR to merge changes from your branch to the development branch.
+
+
+(One of you)
+Download the German Traffic Sign Detection Benchmark Dataset. Download the training dataset to training_data folder and
+testing data to the testing_data folder.
+
+Create a new branch based on development. Add a new folder traffic_sign_svm/docs/
+
+Add a new file traffic_sign_svm/docs/how_to_download_data.txt and add the instructions for what, how, where to download
+the data.
+
+Open a PR to merge changes from your branch to the development branch.
+
+
+(Everyone)
+Follow the instructions in traffic_sign_svm/docs/how_to_download_data.txt
+
+
+(pending) Deadline: 2019-Jan-14
 ==================================
 (Everyone)
 Open up Git bash terminal as Administrator,
@@ -33,6 +73,7 @@ In github desktop,
     Commit and push your changes
     Open a PR against development branch and add me (sahithi403) as a reviewer
 
+
 (Everyone)
 After I approve the above PR,
     Pull new changes on development branch
@@ -42,31 +83,33 @@ After I approve the above PR,
     Open a PR against development branch and add me (sahithi403) as a reviewer
 
 
+
 (pending) Deadline: 2019-Jan-11
-================================
-In each machine,
-3. Setup Github Desktop
-4. Setup pycharm edu
-5. Setup Git for Windows.
+=================================
+(Everyone)
+Setup Git for Windows
+Setup Github Desktop
+Setup pycharm edu
 
     In Github desktop,
-    5. Checkout development branch
-    6. Create a new branch with name 'development_<your_name>'
+        Checkout development branch
+        Create a new branch with name 'development_<your_name>'
 
     In Pycharm,
-    7. Create a file with name 'file_<your_name>' under temp_space folder
+        Create a file with name 'file_<your_name>' under temp_space folder
 
     In Github desktop,
-    8. Only select the recently created file, add any commit message and click 'commit to development_<your_name>' button
-    9. Push your changes to origin
+        Only select the recently created file, add any commit message and click 'commit to development_<your_name>' button
+        Push your changes to origin
 
     Login to github.com
-    9. Create a pull request for your branch with base branch as development and add me(sahithi403) as a reviewer
+        Create a pull request for your branch with base branch as development and add me(sahithi403) as a reviewer
+
 
 
 (done) 2018-12-25
-==================
+===================
 
 Go to github.com
-1. change the default branch to development
-2. Create a folder with name documentation under the folder traffic_sign_svm
+    Change the default branch to development
+    Create a folder with name documentation under the folder traffic_sign_svm
