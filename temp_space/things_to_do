@@ -1,10 +1,49 @@
-2018-12-25
-==========
+(pending) Deadline: 2019-Jan-18
+==================================
+(Everyone)
+Open up Git bash terminal as Administrator,
+    Verify that you have latest verion of pip by running the command: pip --version
+    pip 18.1
 
-Go to github.com
-1. change the default branch to development
-2. Create a folder with name documentation under the folder traffic_sign_svm
+    If you don't have latest version, upgrade pip using the command: pip install --upgrade pip
 
+    If you don't have pip installed in your system, Follow the instructions in 'Pip Install' section in the page:
+    https://github.com/BurntSushi/nfldb/wiki/Python-&-pip-Windows-installation
+
+    Once, pip is installed and is on the latest version, run the following commands
+    pip install opencv-python
+    pip install opencv-contrib-python
+
+
+(One of you)
+In github desktop,
+    Create a new branch based on development. (Give any name you like to the new branch)
+    Add the following code in main.py
+        import cv2
+        import getpass
+        import platform
+        import datetime
+
+        print(getpass.getuser())
+        print(platform.uname())
+        print(datetime.datetime.now())
+        print(cv2.__version__)
+    Run the main.py
+    If you can run the code fine without any errors, paste the output of the script into temp_space/pip_setup_<your_name>
+    Commit and push your changes
+    Open a PR against development branch and add me (sahithi403) as a reviewer
+
+(Everyone)
+After I approve the above PR,
+    Pull new changes on development branch
+    Create a new branch based on development. (Give any name you like to the new branch)
+    run the main.py.
+    Paste the output of the script into temp_space/pip_setup_<your_name>
+    Open a PR against development branch and add me (sahithi403) as a reviewer
+
+
+(pending) Deadline: 2019-Jan-11
+================================
 In each machine,
 3. Setup Github Desktop
 4. Setup pycharm edu
@@ -22,4 +61,12 @@ In each machine,
     9. Push your changes to origin
 
     Login to github.com
-    9. Create a pull request for your branch with base branch as development and add me as a reviewer
+    9. Create a pull request for your branch with base branch as development and add me(sahithi403) as a reviewer
+
+
+(done) 2018-12-25
+==================
+
+Go to github.com
+1. change the default branch to development
+2. Create a folder with name documentation under the folder traffic_sign_svm
