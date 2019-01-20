@@ -31,7 +31,7 @@ In github desktop,
     Run the main.py
     If you can run the code fine without any errors, paste the output of the script into temp_space/pip_setup_<your_name>
     Commit and push your changes
-    Open a PR against your development branch and add me (sahithi403) as a reviewer
+    Open a PR against development branch and add me (sahithi403) as a reviewer
 
 (Everyone)
 After I approve the above PR,
