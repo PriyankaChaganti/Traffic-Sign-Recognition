@@ -105,8 +105,4 @@ venv.bak/
 
 # Pycharm
 .idea*
-*.ppm
-*.jpg
-*.ppm
-*.ppm
-data/test_data/Images/*
+/data/*
