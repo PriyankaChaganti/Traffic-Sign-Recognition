@@ -1,5 +1,5 @@
 import csv
-import os
+from os.path import join as path_join
 
 def make_dataset(dat_set_path,data_set_list):
     """
@@ -7,36 +7,27 @@ def make_dataset(dat_set_path,data_set_list):
     :param data_set_list: folders list
     :return: location
     """
-def read_image_annotations(data_path,data_set_name):
+
+
+def read_image_annotations(datasets_path, dataset_name):
     """
-
-    :param data_path:
-    :param data_set_name:
-    :return:
+    The function reads the annotation file using csv.reader and returns the annotation data as python list
+    :param datasets_path: The path where images and annotation file are present. Example: data/training_data/00001
+    :param dataset_name: The directory name. Example:00001
+    :return: annotated_data
     """
-    dataSetList = ['00013', '00014', '00015', '00017', '00019']
+    annotation_file_folder_path = path_join(datasets_path, dataset_name)
+    annotation_file_name = "GT-{}.csv".format(dataset_name)
+    annotation_file_path = path_join(annotation_file_folder_path , annotation_file_name)
+    annotated_data = []
+    with open(annotation_file_path, 'r') as csvfile:
+        csv_file_reader = csv.reader(csvfile, delimiter=';')
+        next(csv_file_reader, None)
 
-    dataset = '00000'
-    dataloc = 'C:/Users/ch.srivamsi priyanka/Documents/GitHub/traffic_sign_svm/data/training_data/Images/'
+        for row in csv_file_reader:
+            annotated_data.append(row)
 
-    for dataset in dataSetList:
-
-        fileList = os.listdir(dataloc+dataset+'/')
-
-        imageFiles = []
-        fileLoc = dataloc+dataset+'/'
-        annFile = "GT-"+dataset+".csv"
-
-        annData = []
-        with open(fileLoc+annFile, 'r') as csvfile:
-            spamreader = csv.reader(csvfile, delimiter=';')
-
-            count = 0
-            for row in spamreader:
-                if(count > 0):
-                    annData.append(row)
-                count = count + 1
-        print(annData)
+    return annotated_data
 
 
 
@@ -54,7 +45,11 @@ def get_cropped_image(file_path,annotation):
     :param annotation: 
     :return: 
     """
+
+
 if __name__ == "__main__":
-    datasets_path='data/training_data/Images/'
-    dataset_name = '00013'
-    read_image_annotations(datasets_path, dataset_name)
+    # Test the function read_image_annotations
+    datasets_path='../data/training_data/Images/'
+    dataset_name = '00015'
+    annotated_data = read_image_annotations(datasets_path, dataset_name)
+    print(annotated_data)
