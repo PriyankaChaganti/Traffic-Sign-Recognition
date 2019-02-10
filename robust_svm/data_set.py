@@ -1,4 +1,6 @@
-class ImageDataset
+from enum import Enum
+
+class ImageDataset:
     def add_image(self,annotation):
         """
 
@@ -17,3 +19,16 @@ class ImageDataset
         self.class_ids=[]
 
     def shuffle_indexes(self):
+
+
+class AnnotationMapping(Enum):
+
+    Filename = 0
+    Width = 1
+    Height = 2
+    ROIx1 = 3
+    ROIy1 = 4
+    ROIx2 = 5
+    ROIy2 = 6
+    Classid = 7
+
