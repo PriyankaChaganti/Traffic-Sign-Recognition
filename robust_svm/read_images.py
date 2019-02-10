@@ -11,10 +11,7 @@ def read_image_annotations(data_path,data_set_name):
     dataSetList = ['00013', '00014', '00015', '00017', '00019']
 
     dataset = '00000'
-
-    currentLoc = os.getcwd()+'/'
     dataloc = 'C:/Users/ch.srivamsi priyanka/Documents/GitHub/traffic_sign_svm/data/training_data/Images/'
-    #finalData = Data.Data()
 
     for dataset in dataSetList:
 

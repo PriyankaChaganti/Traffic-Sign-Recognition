@@ -1,8 +1,8 @@
 from read_images import read_image_annotations
 
-folderpath=""
-training_data=""
-read_image_annotations(folderpath,training_data)
+folderpath="C:/Users/ch.srivamsi priyanka/Documents/GitHub/traffic_sign_svm/data/training_data/Images/"
+dataset_name="training_data"
+read_image_annotations(folderpath,dataset_name)
 """
 
 read_image_annotations()
