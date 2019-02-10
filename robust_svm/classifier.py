@@ -1,4 +1,4 @@
-class MultiClassClassifier
+class MultiClassClassifier:
     def __init__(self,training_data,svm_params):
         """
 

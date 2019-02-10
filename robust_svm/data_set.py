@@ -1,4 +1,6 @@
+
 from enum import Enum
+
 
 class ImageDataset:
     def add_image(self,annotation):
@@ -19,6 +21,7 @@ class ImageDataset:
         self.class_ids=[]
 
     def shuffle_indexes(self):
+        pass
 
 
 class AnnotationMapping(Enum):
