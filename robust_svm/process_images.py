@@ -1,4 +1,4 @@
-def get_successors(pixd,xlim,ylim)
+def get_successors(pixd,xlim,ylim):
     """
     
     :param pixd: 
@@ -6,19 +6,19 @@ def get_successors(pixd,xlim,ylim)
     :param ylim: 
     :return: 
     """
-def grow_region(image)
+def grow_region(image):
     """
     
     :param image: 
     :return: 
     """
-def hole_fill(image)
+def hole_fill(image):
     """
     
     :param image: 
     :return: 
     """
-def get_seeds(pixel,xlim,ylim,image)
+def get_seeds(pixel,xlim,ylim,image):
     """
     
     :param pixel: 
@@ -27,13 +27,13 @@ def get_seeds(pixel,xlim,ylim,image)
     :param image: 
     :return: 
     """
-def highlight_invariant_threashold(image)
+def highlight_invariant_threashold(image):
     """
     
     :param image: 
     :return: 
     """
-def image_to_feature_vector(image)
+def image_to_feature_vector(image):
     """
     
     :param image: 

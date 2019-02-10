@@ -8,6 +8,12 @@ def make_dataset(dat_set_path,data_set_list):
     :return: location
     """
 def read_image_annotations(data_path,data_set_name):
+    """
+
+    :param data_path:
+    :param data_set_name:
+    :return:
+    """
     dataSetList = ['00013', '00014', '00015', '00017', '00019']
 
     dataset = '00000'
@@ -37,12 +43,7 @@ def read_image_annotations(data_path,data_set_name):
 
 
 
-    """
-    
-    :param data_path: 
-    :param data_set_name: 
-    :return: 
-    """
+
 def get_cropped_image(file_path,annotation):
 
 
@@ -53,3 +54,7 @@ def get_cropped_image(file_path,annotation):
     :param annotation: 
     :return: 
     """
+if __name__ == "__main__":
+    datasets_path='data/training_data/Images/'
+    dataset_name = '00013'
+    read_image_annotations(datasets_path, dataset_name)
