@@ -1,6 +1,7 @@
 from os.path import join
 import numpy as np
 import glob
+from settings import hog3_feature_path
 def get_successors(pixd,xlim,ylim):
     """
     
@@ -42,14 +43,14 @@ def image_to_feature_vector(image):
     :param image: 
     :return: 
     """
-def get_hog_features(data_set_name,image_file_name):
+def get_hog_features(data_class_id,image_file_name):
     """
 
     :param data_set_name:
     :param image_file_name:
     :return:
     """
-    hog_feature_path = join(data_set_name,image_file_name)
+    hog_feature_path = join(data_class_id,image_file_name)
     files = sorted(glob.glob(hog_feature_path + '/*.npy'))
     arrays = []
     for f in files:
