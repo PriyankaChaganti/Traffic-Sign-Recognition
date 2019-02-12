@@ -51,7 +51,7 @@ def get_hog_features(data_class_id,image_file_name):
     :return:
     """
     hog_feature_path = join(data_class_id,image_file_name)
-    files = sorted(glob.glob(hog_feature_path + '/*.npy'))
+    files = sorted(glob.glob(hog_feature_path + '/*.txt'))
     arrays = []
     for f in files:
         arrays.append(np.load(f))
@@ -68,7 +68,7 @@ def get_hog_features(data_class_id,image_file_name):
 
 if __name__ == "__main__":
     # Test the function read_image_annotations
-    data_set_name='../data/training_data/Features_HOG/'
-    image_file_name = 'HOG_3'
+    data_set_name='../data/training_data/Features_HOG/HOG_3'
+    image_file_name = '00000'
     hog_feature_data= get_hog_features(data_set_name,image_file_name)
     print(hog_feature_data)
