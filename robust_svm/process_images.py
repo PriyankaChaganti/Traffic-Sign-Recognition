@@ -68,7 +68,7 @@ def get_hog_features(data_class_id,image_file_name):
 
 if __name__ == "__main__":
     # Test the function read_image_annotations
-    data_set_name='../data/training_data/Features_HOG/HOG_3'
-    image_file_name = '00000'
-    hog_feature_data= get_hog_features(data_set_name,image_file_name)
+    data_class_id='0000'
+    image_file_name = '00001_00029.ppm'
+    hog_feature_data= get_hog_features(data_class_id,image_file_name)
     print(hog_feature_data)
