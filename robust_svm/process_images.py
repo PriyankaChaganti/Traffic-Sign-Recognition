@@ -50,7 +50,7 @@ def get_hog_features(data_class_id,image_file_name):
     :param image_file_name:
     :return:
     """
-    hog_feature_path = join(data_class_id,image_file_name)
+    hog_feature_path = join(hog3_feature_path,data_class_id,image_file_name)
     files = sorted(glob.glob(hog_feature_path + '/*.txt'))
     arrays = []
     for f in files:
