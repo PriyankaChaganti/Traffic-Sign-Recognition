@@ -1,5 +1,5 @@
 from enum import Enum
-from random import shuffle
+import numpy as np
 class ImageDataset():
     def add_image(self,data_sets_path,data_set,annotation):
         """
@@ -30,12 +30,8 @@ class ImageDataset():
 
 
     def shuffle_indexes(self):
-        newData = []
-        ind = range(len(self.data))
-        shuffle(ind)
-        for i in ind:
-            newData.append(self.data[i])
-        self.data = newData
+        newData = np.random.shuffle(self.data)
+        return newData
 
 
 class AnnotationMapping(Enum):
