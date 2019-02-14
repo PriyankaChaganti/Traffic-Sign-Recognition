@@ -21,7 +21,8 @@ class ImageDataset:
         self.class_ids=[]
 
     def shuffle_indexes(self):
-       
+        pass
+
 
 
 
