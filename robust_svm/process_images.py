@@ -2,8 +2,8 @@ from os.path import join,isfile,exists,isdir
 import numpy as np
 import glob
 import cv2
-from settings import hog3_feature_path
-import settings
+from settings import hog3_folder
+
 def get_successors(pixd,xlim,ylim):
     """
     
@@ -55,17 +55,11 @@ def get_hog_features(data_class_id,image_file_name):
     :param image_file_name:
     :return:
     """
-    hog3_feature_path = "C:/Users/ch.srivamsi priyanka/Documents/GitHub/traffic_sign_svm/data/training_data/Features_HOG/HOG_3"
+
     image_feature_filename = image_file_name.replace(".ppm",".txt")
-    hog_feature_path = join(hog3_feature_path,data_class_id,image_feature_filename)
-    with open(hog_feature_path, 'r') as input_file:
-        lines_of_file = [line for line in input_file]
-    return np.array(lines_of_file)
-
-
-
-
-
+    hog_feature_path = join(hog3_folder,data_class_id,image_feature_filename)
+    hog_data_array = np.fromfile(hog_feature_path,dtype=float,count=-1,sep=" ")
+    return hog_data_array
 
 
 if __name__ == "__main__":
