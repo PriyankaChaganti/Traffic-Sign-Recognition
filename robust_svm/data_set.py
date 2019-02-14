@@ -21,9 +21,7 @@ class ImageDataset:
         self.class_ids=[]
 
     def shuffle_indexes(self):
-       # newData = np.random.shuffle(self.data)
-        #return newData
-
+       
 
 
 
