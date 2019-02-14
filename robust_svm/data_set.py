@@ -1,4 +1,5 @@
 from enum import Enum
+import numpy as np
 
 
 class ImageDataset:
@@ -20,7 +21,10 @@ class ImageDataset:
         self.class_ids=[]
 
     def shuffle_indexes(self):
-        pass
+       # newData = np.random.shuffle(self.data)
+        #return newData
+
+
 
 
 class AnnotationMapping(Enum):
