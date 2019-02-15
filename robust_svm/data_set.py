@@ -23,10 +23,9 @@ class ImageDataset():
         self.data.append(dict)
 
 
-    def __init__(self,data,class_ids,hog):
+    def __init__(self,data,class_ids,hog = False):
         self.data=[]
         self.class_ids=[]
-        self.hog=False
 
 
     def shuffle_indexes(self):

@@ -1,7 +1,6 @@
 import csv
 import cv2
-from os.path import join as path_join
-from data_set import addImage
+from os.path import join
 
 def make_dataset(dat_set_path,data_set_list,hog):
     """
@@ -9,7 +8,7 @@ def make_dataset(dat_set_path,data_set_list,hog):
     :param data_set_list: folders list
     :return: location
     """
-    ImageDataset = addImage()
+    ImageDataset = make_dataset()
     for eachAnn in annotated_data:
         if(eachAnn[hog] in data_set_list):
             img = cv2.imread(datasets_path+eachAnn[hog], cv2.IMREAD_COLOR)
@@ -23,9 +22,9 @@ def read_image_annotations(datasets_path, dataset_name):
     :param dataset_name: The directory name. Example:00001
     :return: annotated_data
     """
-    annotation_file_folder_path = path_join(datasets_path, dataset_name)
+    annotation_file_folder_path = join(datasets_path, dataset_name)
     annotation_file_name = "GT-{}.csv".format(dataset_name)
-    annotation_file_path = path_join(annotation_file_folder_path , annotation_file_name)
+    annotation_file_path = join(annotation_file_folder_path , annotation_file_name)
     annotated_data = []
     with open(annotation_file_path, 'r') as csvfile:
         csv_file_reader = csv.reader(csvfile, delimiter=';')
