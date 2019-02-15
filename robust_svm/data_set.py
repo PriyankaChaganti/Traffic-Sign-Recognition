@@ -4,6 +4,8 @@ class ImageDataset():
     def add_image(self,data_sets_path,data_set,annotation):
         """
 
+        :param data_sets_path:
+        :param data_set:
         :param annotation:
         :return:
         """
