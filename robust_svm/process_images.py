@@ -34,7 +34,7 @@ def get_seeds(pixel,xlim,ylim,image):
     :param image: 
     :return: 
     """
-def highlight_invariant_threashold(image):
+def highlight_invariant_threshold(image):
     """
     
     :param image: 
