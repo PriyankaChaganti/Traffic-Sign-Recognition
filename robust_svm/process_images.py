@@ -51,9 +51,9 @@ def image_to_feature_vector(image):
 def get_hog_features(data_class_id,image_file_name):
     """
 
-    :param data_set_name:
-    :param image_file_name:
-    :return:
+    :param data_class_id:The name of directory holding image_feature_filename. (Example = '00000')
+    :param image_file_name:The name of image file.(Example = '00000_00001.ppm')
+    :return:hog_data_array
     """
 
     image_feature_filename = image_file_name.replace(".ppm",".txt")
