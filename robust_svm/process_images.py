@@ -1,7 +1,5 @@
-from os.path import join,isfile,exists,isdir
+from os.path import join
 import numpy as np
-import glob
-import cv2
 from settings import hog3_folder
 
 def get_successors(pixd,xlim,ylim):
