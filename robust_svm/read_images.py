@@ -38,9 +38,6 @@ def read_image_annotations(datasets_path, dataset_name):
 
 
 
-
-
-
 def get_cropped_image(file_path,annotation):
 
 
