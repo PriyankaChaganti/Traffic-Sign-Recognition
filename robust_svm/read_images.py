@@ -1,23 +1,28 @@
 import csv
 import cv2
+import os
 from os.path import join
-import settings
+from settings import *
 from data_set import *
 
 def make_dataset(data_set_path,data_set_list,hog):
     """
+    The function reads the annotation file for each dataset in data_set_list
+    loops over each annotation from the annotation file and adda the image to  the ImageDataset instance via add_image()
     :param data_set_path: path to datasets(training/test)
     :param data_set_list: folders list
-    :return: location
+    :return: ImageDataset instance
     """
-    dataset = '00000'
-    annotated_data = read_image_annotations(data_set_path ,data_set_list)
+
     im = ImageDataset()
     for dataset in data_set_list:
-        for each_ann_file in annotated_data:
-             if(each_ann_file[file_name] in data_set_path):
-                img = cv2.imread(data_set_path+each_ann_file[file_name], cv2.IMREAD_COLOR)
-                im.add_image(img, each_ann_file)
+        annotated_data = read_image_annotations(data_set_path ,dataset)
+        for each_ann in annotated_data:
+            folder_path = join(data_set_path, dataset)
+            folder_files = os.listdir(folder_path)
+            if(each_ann[0] in folder_files):
+                im.add_image(data_set_path,dataset,each_ann)
+    return im
 
 
 def read_image_annotations(datasets_path, dataset_name):
@@ -58,6 +63,6 @@ def get_cropped_image(file_path,annotation):
 if __name__ == "__main__":
     # Test the function read_image_annotations
 
-    datasets_path='../data/training_data/Images/'
-    data_set_list = ['00013', '00014', '00015', '00017', '00019']
+    datasets_path = images_folder
+    data_set_list = ['00013','00015']
     make_dataset(datasets_path,data_set_list,False)

@@ -17,7 +17,7 @@ class ImageDataset:
         The function reads file_name and class_id from the annotation file and adds feature_vector using add_row() to data
         :param data_sets_path:Path to our HOG_Features data set.(Used get_hog_features method instead as it holds the path and returns annotations)
         :param data_set:The name of directory holding image_feature_filename. (Example = '00000')
-        :param annotation:Annotated Data. Ex:Output of 'read_image_annotations'
+        :param annotation:Annotated Data of single image. Ex:Output of 'read_image_annotations'
         :return:Class instance 'data' is updated
         """
 
@@ -45,8 +45,7 @@ class ImageDataset:
         The method shuffles instance attribute data using numpy.random.shuffle
         :return:newdata(shuffled data)
         """
-        newdata = np.random.shuffle(self.data)
-        return newdata
+        np.random.shuffle(self.data)
 
 
 
