@@ -2,6 +2,7 @@ import csv
 import cv2
 from os.path import join
 import settings
+from data_set import *
 
 def make_dataset(data_set_path,data_set_list,hog):
     """
@@ -9,12 +10,14 @@ def make_dataset(data_set_path,data_set_list,hog):
     :param data_set_list: folders list
     :return: location
     """
-
-    ImageDataset = make_dataset()
-    for eachAnn in datasets_path:
-        if(eachAnn[hog] in data_set_list):
-            img = cv2.imread(data_set_path+eachAnn[hog], cv2.IMREAD_COLOR)
-            ImageDataset.addImgData(img, eachAnn)
+    dataset = '00000'
+    annotated_data = read_image_annotations(data_set_path ,data_set_list)
+    im = ImageDataset()
+    for dataset in data_set_list:
+        for each_ann_file in annotated_data:
+             if(each_ann_file[file_name] in data_set_path):
+                img = cv2.imread(data_set_path+each_ann_file[file_name], cv2.IMREAD_COLOR)
+                im.add_image(img, each_ann_file)
 
 
 def read_image_annotations(datasets_path, dataset_name):
