@@ -1,17 +1,18 @@
 import csv
 import cv2
 from os.path import join
+import settings
 
-def make_dataset(dat_set_path,data_set_list,hog):
+def make_dataset(data_set_path,data_set_list,hog):
     """
-    :param dat_set_path: path to datasets(training/test)
+    :param data_set_path: path to datasets(training/test)
     :param data_set_list: folders list
     :return: location
     """
     ImageDataset = make_dataset()
     for eachAnn in annotated_data:
         if(eachAnn[hog] in data_set_list):
-            img = cv2.imread(datasets_path+eachAnn[hog], cv2.IMREAD_COLOR)
+            img = cv2.imread(data_set_path+eachAnn[hog], cv2.IMREAD_COLOR)
             ImageDataset.addImgData(img, eachAnn)
 
 
@@ -56,3 +57,4 @@ if __name__ == "__main__":
     dataset_name = '00015'
     annotated_data = read_image_annotations(datasets_path, dataset_name)
     print(annotated_data)
+    make_dataset()
