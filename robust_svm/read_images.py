@@ -9,8 +9,9 @@ def make_dataset(data_set_path,data_set_list,hog):
     :param data_set_list: folders list
     :return: location
     """
+
     ImageDataset = make_dataset()
-    for eachAnn in annotated_data:
+    for eachAnn in datasets_path:
         if(eachAnn[hog] in data_set_list):
             img = cv2.imread(data_set_path+eachAnn[hog], cv2.IMREAD_COLOR)
             ImageDataset.addImgData(img, eachAnn)
@@ -53,8 +54,7 @@ def get_cropped_image(file_path,annotation):
 
 if __name__ == "__main__":
     # Test the function read_image_annotations
+
     datasets_path='../data/training_data/Images/'
-    dataset_name = '00015'
-    annotated_data = read_image_annotations(datasets_path, dataset_name)
-    print(annotated_data)
-    make_dataset()
+    data_set_list = ['00013', '00014', '00015', '00017', '00019']
+    make_dataset(datasets_path,data_set_list,False)

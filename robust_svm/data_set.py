@@ -1,22 +1,37 @@
 from enum import Enum
 import numpy as np
-class ImageDataset():
-    def add_image(self,data_sets_path,data_set,annotation):
+from settings import *
+from read_images import read_image_annotations
+from process_images import get_hog_features
+
+
+class ImageDataset:
+
+    def __init__(self,data=[],class_ids=[],hog = False):
+        self.data=data
+        self.class_ids=class_ids
+        self.hog=hog
+
+    def add_image(self, data_sets_path, data_set, annotation):
+        """
+        The function reads file_name and class_id from the annotation file and adds feature_vector using add_row() to data
+        :param data_sets_path:Path to our HOG_Features data set.(Used get_hog_features method instead as it holds the path and returns annotations)
+        :param data_set:The name of directory holding image_feature_filename. (Example = '00000')
+        :param annotation:The annotations stored in a python list.(Used file_name and class_id here)
+        :return:Class instance 'data' is updated
         """
 
-        :param data_sets_path:
-        :param data_set:
-        :param annotation:
-        :return:
+        file_name = annotation[0]
+        class_id = annotation[7]
+        var1 = get_hog_features(data_set, file_name)
+        self.add_row(class_id, var1)
+
+    def add_row(self, class_id, feature_vector):
         """
-
-
-    def add_row(self,class_id,feature_vector):
-        """
-
-        :param class_id:
-        :param feature_vector:
-        :return:
+        The function creates a dictionary with keys 'class_id' and 'feature_vector' and appends the dictionary to the class attribute data.
+        :param class_id:The class_id retrieved from annotations file
+        :param feature_vector:The hog_features obtained from add_image method.
+        :return:Class instance 'data' is updated
         """
 
         dict = {}
@@ -24,15 +39,13 @@ class ImageDataset():
         dict['feature_vector'] = feature_vector
         self.data.append(dict)
 
-
-    def __init__(self,data,class_ids,hog = False):
-        self.data=[]
-        self.class_ids=[]
-
-
     def shuffle_indexes(self):
-        newData = np.random.shuffle(self.data)
-        return newData
+        """
+        The method shuffles instance attribute data using numpy.random.shuffle
+        :return:newdata(shuffled data)
+        """
+        newdata = np.random.shuffle(self.data)
+        return newdata
 
 
 
@@ -49,7 +62,16 @@ class AnnotationMapping(Enum):
     Classid = 7
 
 if __name__ == '__main__':
-    im = ImageDataset(data=[100,200], class_ids=[1,2], hog=False)
+    # Test ImageDataset instantiation
+    im = ImageDataset(data=[2,3],class_ids=[5,6],hog=True)
+    im.add_row()
     print(im.data)
     print(im.class_ids)
     print(im.hog)
+
+    # Test ImageDataset.add_image()
+    data_sets_path = hog3_folder
+    data_set = '00000'
+    annotation = read_image_annotations(images_folder, data_set)
+    var1 = annotation[-1]
+    im.add_image(hog3_folder,data_set,var1)
