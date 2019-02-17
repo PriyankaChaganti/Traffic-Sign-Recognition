@@ -42,7 +42,6 @@ def highlight_invariant_threashold(image):
     :param image: 
     :return: 
     """
-
 def image_to_feature_vector(image):
     """
     

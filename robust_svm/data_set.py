@@ -1,3 +1,4 @@
+from enum import Enum
 import numpy as np
 from settings import *
 from read_images import *
@@ -20,8 +21,8 @@ class ImageDataset:
         :return:Class instance 'data' is updated
         """
 
-        file_name = AM.Filename
-        class_id = AM.Classid
+        file_name = annotation[0]
+        class_id = annotation[7]
         hog3_feature_vector = get_hog_features(data_set, file_name)
         self.add_row(class_id, hog3_feature_vector)
 
@@ -35,11 +36,11 @@ class ImageDataset:
         """
 
         dict = {}
-        dict['class_id']= class_id
+        dict['class_id'] = class_id
         dict['feature_vector'] = feature_vector
         self.data.append(dict)
 
-    def shuffle(self):
+    def shuffle_indexes(self):
         """
         The method shuffles instance attribute data using numpy.random.shuffle
         :return:newdata(shuffled data)
@@ -49,7 +50,7 @@ class ImageDataset:
 
 
 
-class AM():
+class AnnotationMapping(Enum):
 
     Filename = 0
     Width = 1
