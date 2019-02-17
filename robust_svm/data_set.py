@@ -1,4 +1,4 @@
-from enum import Enum
+import enum as Enum
 import numpy as np
 from settings import *
 from read_images import *
@@ -36,11 +36,11 @@ class ImageDataset:
         """
 
         dict = {}
-        dict['class_id'] = class_id
+        dict['class_id']= class_id
         dict['feature_vector'] = feature_vector
         self.data.append(dict)
 
-    def shuffle_indexes(self):
+    def shuffle(self):
         """
         The method shuffles instance attribute data using numpy.random.shuffle
         :return:newdata(shuffled data)
