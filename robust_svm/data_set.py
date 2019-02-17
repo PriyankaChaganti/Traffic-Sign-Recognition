@@ -57,20 +57,20 @@ class AM:
     Classid = 7
 
 if __name__ == '__main__':
-     #Test ImageDataset instantiation
-     im = ImageDataset(data=[2,3],class_ids=[5,6],hog=True)
-     im.add_row(class_id=None,feature_vector=None)
-     print(im.data)
-     print(im.class_ids)
-     print(im.hog)
-     im.shuffle()
+    #Test ImageDataset instantiation
+    im = ImageDataset(data=[2,3],class_ids=[5,6],hog=True)
+    im.add_row(class_id=None,feature_vector=None)
+    print(im.data)
+    print(im.class_ids)
+    print(im.hog)
+    im.shuffle_indexes()
 
-     #Test ImageDataset.add_image()
-     data_sets_path = hog3_folder
-     data_set = '00000'
-     annotation = read_image_annotations(images_folder, data_set)
-     var1 = annotation[-1]
-     im.add_image(hog3_folder,data_set,var1)
+    # Test ImageDataset.add_image()
+    data_sets_path = hog3_folder
+    data_set = '00000'
+    annotation = read_image_annotations(images_folder, data_set)
+    var1 = annotation[-1]
+    im.add_image(hog3_folder,data_set,var1)
 
 
 
