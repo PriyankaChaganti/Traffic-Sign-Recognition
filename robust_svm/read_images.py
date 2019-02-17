@@ -1,5 +1,4 @@
 import csv
-import cv2
 import os
 from os.path import join
 from settings import *
@@ -19,11 +18,11 @@ def make_dataset(data_set_path,data_set_list,hog):
         #Read the annotation file in the dataset
         annotated_data = read_image_annotations(data_set_path ,dataset)
         #Iterates on all annotations in the annotation file
-        for each_ann in annotated_data:
+        for eachann in annotated_data:
             folder_path = join(data_set_path, dataset)
             folder_files = os.listdir(folder_path)
-            if(each_ann[0] in folder_files):
-                im.add_image(data_set_path,dataset,each_ann)
+            if(eachann[AM.Filename] in folder_files):
+                im.add_image(data_set_path,dataset,eachann)
     return im
 
 

@@ -1,4 +1,3 @@
-import enum as Enum
 import numpy as np
 from settings import *
 from read_images import *
@@ -20,8 +19,8 @@ class ImageDataset:
         :param annotation:Annotated Data of single image. Ex:Output of 'read_image_annotations'
         """
 
-        file_name = annotation[0]
-        class_id = annotation[7]
+        file_name = annotation[AM.Filename]
+        class_id = annotation[AM.Classid]
         hog3_feature_vector = get_hog_features(data_set, file_name)
         self.add_row(class_id, hog3_feature_vector)
 
@@ -46,7 +45,7 @@ class ImageDataset:
 
 
 
-class AnnotationMapping(Enum):
+class AM:
 
     Filename = 0
     Width = 1
@@ -58,17 +57,20 @@ class AnnotationMapping(Enum):
     Classid = 7
 
 if __name__ == '__main__':
-    # Test ImageDataset instantiation
-    im = ImageDataset(data=[2,3],class_ids=[5,6],hog=True)
-    im.add_row(class_id=None,feature_vector=None)
-    print(im.data)
-    print(im.class_ids)
-    print(im.hog)
-    im.shuffle_indexes()
+     #Test ImageDataset instantiation
+     im = ImageDataset(data=[2,3],class_ids=[5,6],hog=True)
+     im.add_row(class_id=None,feature_vector=None)
+     print(im.data)
+     print(im.class_ids)
+     print(im.hog)
+     im.shuffle()
 
-    # Test ImageDataset.add_image()
-    data_sets_path = hog3_folder
-    data_set = '00000'
-    annotation = read_image_annotations(images_folder, data_set)
-    var1 = annotation[-1]
-    im.add_image(hog3_folder,data_set,var1)
+     #Test ImageDataset.add_image()
+     data_sets_path = hog3_folder
+     data_set = '00000'
+     annotation = read_image_annotations(images_folder, data_set)
+     var1 = annotation[-1]
+     im.add_image(hog3_folder,data_set,var1)
+
+
+
