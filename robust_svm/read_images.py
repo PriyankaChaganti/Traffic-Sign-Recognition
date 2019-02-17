@@ -20,7 +20,8 @@ def make_dataset(data_set_path,data_set_list,hog):
         for each_ann in annotated_data:
             folder_path = join(data_set_path, dataset)
             folder_files = os.listdir(folder_path)
-            if(each_ann[0] in folder_files):
+            var1 = AM.Filename in folder_files
+            if(AM.Filename in folder_files):
                 im.add_image(data_set_path,dataset,each_ann)
     return im
 
