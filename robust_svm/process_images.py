@@ -44,18 +44,18 @@ def highlight_invariant_threashold(image):
     """
     hsvimage = cv2.cvtColor(image, cv2.COLOR_BGR2HSV_FULL)
     #blue
-    treshLow1 = np.array([235, 0, 0], dtype=np.uint8)
+    treshLow1 = np.array([235, 40, 0], dtype=np.uint8)
     treshHigh1 = np.array([255, 255, 255], dtype=np.uint8)
     img1 = cv2.inRange(hsvimage, treshLow1, treshHigh1)
-
+    #high colour areas
     treshLow1 = np.array([0, 40, 0], dtype=np.uint8)
     treshHigh1 = np.array([255, 255, 255], dtype=np.uint8)
     img2 = cv2.inRange(hsvimage, treshLow1, treshHigh1)
-
+    #non-black
     treshLow1 = np.array([0, 0, 30], dtype=np.uint8)
     treshHigh1 = np.array([255, 255, 230], dtype=np.uint8)
     img3 = cv2.inRange(hsvimage, treshLow1, treshHigh1)
-
+    #red
     treshLow2 = np.array([0, 0, 0])
     treshHigh2 = np.array([10, 255, 255])
     img4 = cv2.inRange(hsvimage, treshLow2, treshHigh2)
