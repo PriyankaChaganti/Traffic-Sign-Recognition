@@ -8,7 +8,7 @@ from data_set import *
 def make_dataset(data_set_path,data_set_list,hog):
     """
     The function reads the annotation file for each dataset in data_set_list
-    loops over each annotation from the annotation file and adda the image to  the ImageDataset instance via add_image()
+    loops over each annotation from the annotation file and adds the image to the ImageDataset instance via add_image()
     :param data_set_path: path to datasets(training/test)
     :param data_set_list: folders list
     :return: ImageDataset instance
@@ -16,6 +16,7 @@ def make_dataset(data_set_path,data_set_list,hog):
 
     im = ImageDataset()
     for dataset in data_set_list:
+    #nested loop used here for reading each annotated data according to its dataset
         annotated_data = read_image_annotations(data_set_path ,dataset)
         for each_ann in annotated_data:
             folder_path = join(data_set_path, dataset)

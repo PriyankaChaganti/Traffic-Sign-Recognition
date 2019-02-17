@@ -43,7 +43,6 @@ class ImageDataset:
     def shuffle(self):
         """
         The method shuffles instance attribute data using numpy.random.shuffle
-        :return:newdata(shuffled data)
         """
         np.random.shuffle(self.data)
 
