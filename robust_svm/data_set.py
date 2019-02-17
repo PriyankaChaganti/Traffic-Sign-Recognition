@@ -18,7 +18,6 @@ class ImageDataset:
         :param data_sets_path:Path to our HOG_Features data set.(Used get_hog_features method instead as it holds the path and returns annotations)
         :param data_set:The name of directory holding image_feature_filename. (Example = '00000')
         :param annotation:Annotated Data of single image. Ex:Output of 'read_image_annotations'
-        :return:Class instance 'data' is updated
         """
 
         file_name = annotation[0]
@@ -28,7 +27,7 @@ class ImageDataset:
 
     def add_row(self, class_id , feature_vector):
         """
-        The function creates a dictionary with keys 'class_id and 'feature_vector' and appends the dictionry to class attribute data.
+        The function creates a dictionary with keys 'class_id and 'feature_vector' and appends the dictionary to instance attribute data.
         :param class_id:The class_id retrieved from annotations file
         :param feature_vector:The hog_features obtained from add_image method.
         """
