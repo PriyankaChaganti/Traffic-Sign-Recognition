@@ -17,11 +17,11 @@ def make_dataset(data_set_path,data_set_list,hog):
     im = ImageDataset()
     for dataset in data_set_list:
         annotated_data = read_image_annotations(data_set_path ,dataset)
-        for each_ann in annotated_data:
-            folder_path = join(data_set_path, dataset)
-            folder_files = os.listdir(folder_path)
-            if(each_ann[0] in folder_files):
-                im.add_image(data_set_path,dataset,each_ann)
+            for eachann in annotated_data:
+                folder_path = join(data_set_path, dataset)
+                folder_files = os.listdir(folder_path)
+                if(AM.Filename in folder_files):
+                    im.add_image(data_set_path,dataset,eachann)
     return im
 
 
