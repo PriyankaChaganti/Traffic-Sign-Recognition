@@ -28,9 +28,7 @@ class ImageDataset:
 
     def add_row(self, class_id , feature_vector):
         """
-        The function reads the image file name and class_id from the annotation data.
-        The function reads the corresponding feature file based on the image filename using'get_hog_features'
-        and adds it to the instance attribute 'data' using 'add_row'.
+        The function creates a dictionary with keys 'class_id and 'feature_vector' and appends the dictionry to class attribute data.
         :param class_id:The class_id retrieved from annotations file
         :param feature_vector:The hog_features obtained from add_image method.
         """
