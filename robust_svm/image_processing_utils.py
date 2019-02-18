@@ -31,7 +31,6 @@ def highlight_invariant_threshold(image):
     1.Converting the cropped image from rgb to hsv color space using cv2
     2.Applying thresholding.
     3.Applying bit wise operators on the thresholded images to get final image.
-    4.Applying morphological opening and closing to fill small holes in the thresholded images.
     :param image:RGB image that has to be preprocessed
     :return:output_image
     """
@@ -97,6 +96,7 @@ def grow_region(image):
     :return:binary_image
     """
     # Get image width, height, and center
+    image = image.copy()
     width = np.size(image, 1)
     height = np.size(image, 0)
     xc = int(width/2)
