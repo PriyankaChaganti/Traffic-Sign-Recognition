@@ -215,7 +215,6 @@ if __name__ == "__main__":
     hog_feature_data= get_hog_features(data_class_id,image_file_name)
     print(hog_feature_data)
 
-    # sample_annotation = ['00002_00017.ppm', '54', '56', '6', '6', '48', '50', '1']
     sample_annotation = ['00001_00029.ppm', '193', '191', '16', '17', '177', '4174', '14']
     data_set = '00014'
     dataset_path = join(images_folder, data_set)
