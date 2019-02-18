@@ -28,4 +28,8 @@ if __name__ == "__main__":
        0.706723  ])}
    image_class = '0'
    var2= check_image_class(row,image_class)
-   print(var2)
+   assert var2 ==1
+   row = {'class_id': '5', 'feature_vector': ([0.00134514, 0.00835472, 0.0826663 , 0.0158771 , 0.137276])}
+   image_class = '2'
+   var3= check_image_class(row, image_class)
+   assert var3 == -1
