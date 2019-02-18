@@ -46,21 +46,6 @@ def read_image_annotations(datasets_path, dataset_name):
 
     return annotated_data
 
-
-
-
-def get_cropped_image(file_path,annotation):
-
-
-
-    """
-    
-    :param file_path: 
-    :param annotation: 
-    :return: 
-    """
-
-
 if __name__ == "__main__":
     # Test the function read_image_annotations
 
