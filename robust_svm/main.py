@@ -1,8 +1,14 @@
-from read_images import read_image_annotations
+from read_images import make_dataset
+from settings import *
 
-folderpath="C:/Users/ch.srivamsi priyanka/Documents/GitHub/traffic_sign_svm/data/training_data/Images/"
-dataset_name="training_data"
-read_image_annotations(folderpath,dataset_name)
+#folderpath="C:/Users/ch.srivamsi priyanka/Documents/GitHub/traffic_sign_svm/data/training_data/Images/"
+#dataset_name="training_data"
+#read_image_annotations(folderpath,dataset_name)
+
+data_set_list = ['00013','00015']
+data_set_path = images_folder
+hog = None
+training_data = make_dataset(data_set_path,data_set_list,hog)
 """
 
 read_image_annotations()

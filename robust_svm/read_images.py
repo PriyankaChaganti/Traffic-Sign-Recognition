@@ -15,6 +15,7 @@ def make_dataset(data_set_path,data_set_list,hog):
     im = ImageDataset()
     #Iterates on the datasets in the dataset list
     for dataset in data_set_list:
+        print("Processing dataset {}".format(dataset))
         #Read the annotation file in the dataset
         annotated_data = read_image_annotations(data_set_path ,dataset)
         #Iterates on all annotations in the annotation file
@@ -23,6 +24,7 @@ def make_dataset(data_set_path,data_set_list,hog):
             folder_files = os.listdir(folder_path)
             if(eachann[AM.Filename] in folder_files):
                 im.add_image(data_set_path,dataset,eachann)
+        print("Done processing images in the dataset {}".format(dataset))
     return im
 
 
@@ -33,6 +35,7 @@ def read_image_annotations(datasets_path, dataset_name):
     :param dataset_name: The directory name. Example:00001
     :return: annotated_data
     """
+
     annotation_file_folder_path = join(datasets_path, dataset_name)
     annotation_file_name = "GT-{}.csv".format(dataset_name)
     annotation_file_path = join(annotation_file_folder_path , annotation_file_name)
@@ -40,10 +43,8 @@ def read_image_annotations(datasets_path, dataset_name):
     with open(annotation_file_path, 'r') as csvfile:
         csv_file_reader = csv.reader(csvfile, delimiter=';')
         next(csv_file_reader, None)
-
         for row in csv_file_reader:
             annotated_data.append(row)
-
     return annotated_data
 
 if __name__ == "__main__":
