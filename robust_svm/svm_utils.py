@@ -6,11 +6,12 @@ from data_set import ImageDataset,AM
 
 def check_image_class(row, image_class):
     """
-    
-    :param image_data: 
-    :param expected_image_class: 
-    :return: 
+    The function should check if the row's class_id is the same as the parameter image_class.
+    :param row: Row from ImageDataset.(Example:{'class_id': '0', 'feature_vector': ([0.00134514 , ..., 0.706723  ])})
+    :param image_class:The class_id of the images which checks if an image belongs to a particular class.
+    :return: Yes/No.
     """
+    assert type(row['class_id']) == type(image_class)
     if(row['class_id'] == image_class):
         return 1
     else:
@@ -23,12 +24,6 @@ def test_classifier(multi_class_classifier,test_data):
     :return: 
     """
 if __name__ == "__main__":
-   im = ImageDataset(data=[2,3],class_ids=[5,6],hog=True)
-   im.add_row(class_id=None,feature_vector=None)
-   data_sets_path = hog3_folder
-   data_set = '00000'
-   var1 = ['00006_00029.ppm', '112', '118', '10', '11', '103', '108', '0']
-   im.add_image(hog3_folder,data_set,var1)
    row = {'class_id': '0', 'feature_vector': ([0.00134514, 0.00835472, 0.0826663 , ..., 0.0158771 , 0.137276  ,
        0.706723  ])}
    image_class = '0'
