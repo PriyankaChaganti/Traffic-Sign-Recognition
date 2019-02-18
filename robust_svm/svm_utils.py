@@ -9,7 +9,7 @@ def check_image_class(row, image_class):
     The function should check if the row's class_id is the same as the parameter image_class.
     :param row: Row from ImageDataset.(Example:{'class_id': '0', 'feature_vector': ([0.00134514 , ..., 0.706723  ])})
     :param image_class:The class_id of the images which checks if an image belongs to a particular class.
-    :return: Yes/No.
+    :return: 1/-1.
     """
     assert type(row['class_id']) == type(image_class)
     if(row['class_id'] == image_class):
