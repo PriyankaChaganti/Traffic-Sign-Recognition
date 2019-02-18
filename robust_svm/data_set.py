@@ -63,7 +63,7 @@ if __name__ == '__main__':
     print(im.data)
     print(im.class_ids)
     print(im.hog)
-    im.shuffle_indexes()
+    #im.shuffle_indexes()
 
     # Test ImageDataset.add_image()
     data_sets_path = hog3_folder
