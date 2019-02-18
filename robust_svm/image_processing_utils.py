@@ -3,7 +3,6 @@ from data_set import AM
 from os.path import join
 import numpy as np
 from settings import images_folder, project_path, temp_folder
-from process_images import get_hog_features
 
 def get_cropped_image(dataset_path, annotation):
     """
@@ -32,6 +31,7 @@ def highlight_invariant_threshold(image):
     1.Converting the cropped image from rgb to hsv color space using cv2
     2.Applying thresholding.
     3.Applying bit wise operators on the thresholded images to get final image.
+    4.Applying morphological opening and closing to fill small holes in the thresholded images.
     :param image:RGB image that has to be preprocessed
     :return:output_image
     """
@@ -209,11 +209,11 @@ def get_neighboring_points(x, y, x_lim, y_lim):
 
 
 if __name__ == "__main__":
-    # Test the function read_image_annotations
-    data_class_id='00000'
-    image_file_name = '00000_00000.ppm'
-    hog_feature_data= get_hog_features(data_class_id,image_file_name)
-    print(hog_feature_data)
+    # # Test the function read_image_annotations
+    # data_class_id='00000'
+    # image_file_name = '00000_00000.ppm'
+    # hog_feature_data= get_hog_features(data_class_id,image_file_name)
+    # print(hog_feature_data)
 
     sample_annotation = ['00001_00029.ppm', '193', '191', '16', '17', '177', '4174', '14']
     data_set = '00014'
