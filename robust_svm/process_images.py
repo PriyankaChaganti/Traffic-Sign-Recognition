@@ -53,6 +53,7 @@ def image_to_feature_vector(image):
 def read_feature_file(features_folder_path, data_class_id, image_file_name):
     """
     The function reads image file and returns its corresponding HOG feature file in the form of a numpy array
+    :param: features_folder_path:The path of folder holding features.
     :param data_class_id:The name of directory holding image_feature_filename. (Example = '00000')
     :param image_file_name:The name of image file.(Example = '00000_00001.ppm')
     :return:hog_data_array
