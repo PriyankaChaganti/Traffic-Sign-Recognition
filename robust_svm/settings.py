@@ -9,7 +9,7 @@ images_path = "Images"
 hog3_path = join("Features_HOG", "HOG_3")
 
 training_data_folder = join(project_path, training_data)
-test_data_folder = join(project_path, training_data)
+test_data_folder = join(project_path, test_data)
 
 temp_folder = join(project_path, "temp_space")
 

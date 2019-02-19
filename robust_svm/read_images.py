@@ -35,7 +35,7 @@ def make_dataset(data_path, feature_path, data_set_list):
 def read_image_annotations(folder_path, dataset_name):
     """
     The function reads the annotation file using csv.reader and returns the annotation data as python list
-    :param datasets_path: The path where images and annotation file are present. Example: data/training_data/00001
+    :param folder_path: The path where images and annotation file are present. Example: data/training_data/00001
     :param dataset_name: The directory name. Example:00001
     :return: annotated_data
     """
