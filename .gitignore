@@ -109,5 +109,6 @@ venv.bak/
 /data/**/*.txt
 /data/**/*.ppm
 /data/**/*.csv
+/data/**/*.p
 
 /temp_space/*.png
