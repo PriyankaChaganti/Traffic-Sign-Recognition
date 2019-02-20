@@ -1,19 +1,15 @@
 import numpy as np
-
 from robust_svm.settings import *
 
 
 def get_successors(pixd,xlim,ylim):
     """
-
     :param pixd:
     :param xlim:
     :param ylim:
     :return:
     """
-
-
-
+    
 def grow_region(image):
     """
 
@@ -52,8 +48,8 @@ def image_to_feature_vector(image):
 
 def read_feature_file(features_folder_path, data_class_id, image_file_name):
     """
-    The function reads image file and returns its corresponding HOG feature file in the form of a numpy array
-    :param: features_folder_path:The path of folder holding features.
+    The function reads an image and returns its corresponding feature file in the form of an array.
+    :param: features_folder_path:The name of directory holding HOG Feature folders.(Example = '../data/training_data/Features_HOG/HOG_3' )
     :param data_class_id:The name of directory holding image_feature_filename. (Example = '00000')
     :param image_file_name:The name of image file.(Example = '00000_00001.ppm')
     :return:hog_data_array
