@@ -7,10 +7,8 @@ feature_path = hog3_path
 data_set_list = ['00013', '00015']
 training_data = make_dataset(data_path, feature_path, data_set_list)
 
-training_data = pickle.dump(training_data, open( "../data/dumps/training_data.p", "wb" ))
+training_data_pickle = pickle.dump(training_data, open( "../data/dumps/training_data.p", "wb" ))
 training_data_unpickle = pickle.load( open( "../data/dumps/training_data.p", "rb" ) )
 
-if(training_data == training_data_unpickle):
-    print("Same")
-else:
-    print("Not Same")
+
+
