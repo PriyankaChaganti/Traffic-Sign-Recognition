@@ -59,15 +59,14 @@ def read_feature_file(features_folder_path, data_class_id, image_file_name):
     :param image_file_name:The name of image file.(Example = '00000_00001.ppm')
     :return:hog_data_array
     """
-    hog_data_array = []
     feature_filename = image_file_name.replace(".ppm",".txt")
     feature_file_path = join(features_folder_path, data_class_id, feature_filename)
-    with open(feature_file_path, 'r') as csvfile:
-        hog_data = csv.reader(csvfile, delimiter=' ')
-        for row in hog_data:
-            hog_data_array.append(row)
-        print(hog_data_array)
+
+    hog_data_array = open(feature_file_path).read().split()
+    for i in range(len(hog_data_array)):
+        hog_data_array[i] = float(hog_data_array[i])
     return hog_data_array
+
 
 
 if __name__ == "__main__":

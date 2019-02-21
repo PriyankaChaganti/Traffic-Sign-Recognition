@@ -17,7 +17,7 @@ class MultiClassClassifier:
         self.classifiers = {}
         self.epochs = epochs  # Number of times data must be fed to the svm
         self.r0 = svm_params.get('r0', 0.6)  # Rate of convergence
-        self.C = svm_params.get('C', 1)  # Constant
+        self.C = svm_params.get('C', 0.9)  # Constant
         self.kernel_type = svm_params.get('kernel_type', 'linear')
 
         # Sigmoid kernel parameters. These parameters are required only if
@@ -133,5 +133,5 @@ if __name__ == "__main__":
     data_set_list = ['00013', '00015']
     training_data = make_dataset(data_path, feature_path, data_set_list)
     kernel_type = "linear"
-    ml = MultiClassClassifier(training_data,1,{"r0":0,"c":0,kernel_type:"linear"})
+    ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
     ml.build_classifier(training_data)
