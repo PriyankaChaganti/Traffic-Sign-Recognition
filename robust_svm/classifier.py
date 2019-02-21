@@ -1,12 +1,15 @@
 import numpy
-from svm_utils import check_image_class
-
+from robust_svm.svm_utils import check_image_class
+from robust_svm.settings import *
+from robust_svm.read_images import *
+from robust_svm.process_images import *
+from robust_svm.data_set import *
 
 class MultiClassClassifier:
     """SVM-based multi class classifier"""
     def __init__(self, training_data, epochs, svm_params):
         """
-        :param training_data: Data for training the svm classifier. Instance of ImageDatset class
+        :param training_data: Data for training the svm classifier. Instance of ImageDataset class
         :param epochs: Number of times the training data should be fed to the classifier
         :param svm_params: SVM parameters such as r0: rate of convergence, C: constant,
         kernel_type: type of the kernel used in the svm
@@ -121,3 +124,11 @@ class MultiClassClassifier:
             label = 0
 
         return label
+
+if __name__ == "__main__":
+    data_path = training_data_folder
+    feature_path = hog3_path
+    data_set_list = ['00013', '00015']
+    training_data = make_dataset(data_path, feature_path, data_set_list)
+    ml = MultiClassClassifier()
+    ml.build_classifier(training_data)
