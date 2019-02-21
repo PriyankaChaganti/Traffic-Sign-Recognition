@@ -1,20 +1,14 @@
-import csv
-import numpy as np
-
 from robust_svm.settings import *
 
 
 def get_successors(pixd,xlim,ylim):
     """
-
     :param pixd:
     :param xlim:
     :param ylim:
     :return:
     """
-
-
-
+    
 def grow_region(image):
     """
 
