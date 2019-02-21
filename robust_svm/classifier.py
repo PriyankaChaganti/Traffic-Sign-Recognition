@@ -18,7 +18,7 @@ class MultiClassClassifier:
         self.epochs = epochs  # Number of times data must be fed to the svm
         self.r0 = svm_params.get('r0', 0.6)  # Rate of convergence
         self.C = svm_params.get('C', 1)  # Constant
-        self.kernel_type = svm_params.get('kernel_type', 'sigmoid')
+        self.kernel_type = svm_params.get('kernel_type', 'linear')
 
         # Sigmoid kernel parameters. These parameters are required only if
         # self.kernel_type is 'sigmoid'
@@ -71,6 +71,7 @@ class MultiClassClassifier:
         """
         for class_id in training_data.class_ids:
             w = self.train_classifier(training_data, class_id)
+            print("in build classifier")
             self.classifiers[class_id] = w
 
     def train_classifier(self, training_data, training_class_id):
@@ -89,6 +90,7 @@ class MultiClassClassifier:
         t = 0
         for eachEpoch in range(self.epochs):
             training_data.shuffle_indexes()
+            print("in train classifier")
             for row in training_data.data:
                 label = check_image_class(row, training_class_id)
                 rate = self.r0/(1 + ((self.r0*t)/self.C))
@@ -130,5 +132,6 @@ if __name__ == "__main__":
     feature_path = hog3_path
     data_set_list = ['00013', '00015']
     training_data = make_dataset(data_path, feature_path, data_set_list)
-    ml = MultiClassClassifier()
+    kernel_type = "linear"
+    ml = MultiClassClassifier(training_data,1,{"r0":0,"c":0,kernel_type:"linear"})
     ml.build_classifier(training_data)

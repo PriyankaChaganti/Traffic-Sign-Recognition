@@ -1,4 +1,4 @@
-
+import csv
 import numpy as np
 
 from robust_svm.settings import *
@@ -59,9 +59,14 @@ def read_feature_file(features_folder_path, data_class_id, image_file_name):
     :param image_file_name:The name of image file.(Example = '00000_00001.ppm')
     :return:hog_data_array
     """
+    hog_data_array = []
     feature_filename = image_file_name.replace(".ppm",".txt")
     feature_file_path = join(features_folder_path, data_class_id, feature_filename)
-    hog_data_array = np.fromfile(feature_file_path)
+    with open(feature_file_path, 'r') as csvfile:
+        hog_data = csv.reader(csvfile, delimiter=' ')
+        for row in hog_data:
+            hog_data_array.append(row)
+        print(hog_data_array)
     return hog_data_array
 
 
