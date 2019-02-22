@@ -47,9 +47,6 @@ def read_image_annotations(folder_path, dataset_name):
         next(csv_file_reader, None)
         for row in csv_file_reader:
             annotated_data.append(row)
-        for i in range(2,6):
-                list(map(float, annotated_data[AM.Classid]))
-                print(annotated_data)
     return annotated_data
 
 

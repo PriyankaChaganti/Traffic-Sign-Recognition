@@ -61,7 +61,8 @@ def read_feature_file(features_folder_path, data_class_id, image_file_name):
     """
     feature_filename = image_file_name.replace(".ppm",".txt")
     feature_file_path = join(features_folder_path, data_class_id, feature_filename)
-    hog_data_array = open(feature_file_path).read().split()
+    with open(feature_file_path) as file:
+        hog_data_array = file.read().split()
     for i in range(len(hog_data_array)):
         hog_data_array[i] = float(hog_data_array[i])
     return hog_data_array
