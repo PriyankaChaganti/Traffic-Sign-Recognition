@@ -22,6 +22,8 @@ class ImageDataset:
         class_id = annotation[AM.Classid]
         feature_vector = read_feature_file(self.features_path, data_set, file_name)
         self.add_row(class_id, feature_vector)
+        self.class_ids.append(class_id)
+        print(class_id)
 
     def add_row(self, class_id, feature_vector):
         """
@@ -32,7 +34,10 @@ class ImageDataset:
         row = dict()
         row['class_id'] = class_id
         row['feature_vector'] = feature_vector
+        self.class_ids = class_id
         self.data.append(row)
+
+
 
     def shuffle(self):
         """
@@ -58,13 +63,13 @@ if __name__ == '__main__':
     features_folder_path = join(test_data_folder, hog3_path)
     im = ImageDataset(images_path=images_folder_path, features_path=features_folder_path)
 
-    # Test ImageDataset.add_image()
-    sample_data_set = '00000'
-    from robust_svm.read_images import read_image_annotations
-    dataset_folder_path = join(images_folder_path, sample_data_set)
-    image_annotations = read_image_annotations(dataset_folder_path, sample_data_set)
-    sample_annotation = image_annotations[-1]
-    im.add_image(sample_data_set, sample_annotation)
+    ## Test ImageDataset.add_image()
+    #sample_data_set = '00000'
+    #from robust_svm.read_images import read_image_annotations
+    #dataset_folder_path = join(images_folder_path, sample_data_set)
+    #image_annotations = read_image_annotations(dataset_folder_path, sample_data_set)
+    #sample_annotation = image_annotations[-1]
+    #im.add_image(sample_data_set, sample_annotation)
 
     # Test ImageDataset.add_row()
     sample_class_id = '1'
