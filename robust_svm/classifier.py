@@ -5,6 +5,7 @@ from robust_svm.read_images import *
 from robust_svm.process_images import *
 from robust_svm.data_set import *
 
+
 class MultiClassClassifier:
     """SVM-based multi class classifier"""
     def __init__(self, training_data, epochs, svm_params):
@@ -89,7 +90,7 @@ class MultiClassClassifier:
         w = numpy.array([0] * len(training_data.data[0]['feature_vector']))
         t = 0
         for eachEpoch in range(self.epochs):
-            training_data.shuffle_indexes()
+            training_data.shuffle()
             print("in train classifier")
             for row in training_data.data:
                 label = check_image_class(row, training_class_id)
@@ -127,6 +128,13 @@ class MultiClassClassifier:
 
         return label
 
+    def get_all_classifier_labels(self,row):
+        results = {}
+        for eachclassifier in self.classifiers:
+            svm_label = self.get_svm_label(eachclassifier,row)
+            results['classifier_id'] = svm_label
+        return results
+
 if __name__ == "__main__":
     data_path = training_data_folder
     feature_path = hog3_path
@@ -134,4 +142,8 @@ if __name__ == "__main__":
     training_data = make_dataset(data_path, feature_path, data_set_list)
     kernel_type = "linear"
     ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
-    ml.build_classifier(training_data)
+    #ml.build_classifier(training_data)
+    row = training_data.data[0]
+    results = ml.get_all_classifier_labels(row)
+    print(results)
+

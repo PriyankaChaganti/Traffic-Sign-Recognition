@@ -2,7 +2,8 @@ import cv2
 from data_set import AM
 from os.path import join
 import numpy as np
-from settings import images_folder, project_path, temp_folder
+from robust_svm.process_images import read_feature_file
+from settings import images_path, project_path, temp_folder,training_data_folder,hog3_path
 
 def get_cropped_image(dataset_path, annotation):
     """
@@ -209,15 +210,16 @@ def get_neighboring_points(x, y, x_lim, y_lim):
 
 
 if __name__ == "__main__":
-    # # Test the function read_image_annotations
-    # data_class_id='00000'
-    # image_file_name = '00000_00000.ppm'
-    # hog_feature_data= get_hog_features(data_class_id,image_file_name)
-    # print(hog_feature_data)
+    #Test the function read_feature_file
+    features_folder_path = join(training_data_folder,hog3_path)
+    data_class_id='00000'
+    image_file_name ='00000_00000.ppm'
+    hog_feature_data= read_feature_file(features_folder_path, data_class_id, image_file_name)
+    #print(hog_feature_data)
 
     sample_annotation = ['00001_00029.ppm', '193', '191', '16', '17', '177', '4174', '14']
     data_set = '00014'
-    dataset_path = join(images_folder, data_set)
+    dataset_path = join(training_data_folder,images_path, data_set)
     image_filename = sample_annotation[0]
     image_path = join(dataset_path, image_filename)
 
