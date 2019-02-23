@@ -215,7 +215,7 @@ if __name__ == "__main__":
     data_class_id='00000'
     image_file_name ='00000_00000.ppm'
     hog_feature_data= read_feature_file(features_folder_path, data_class_id, image_file_name)
-    print(hog_feature_data)
+    #print(hog_feature_data)
 
     sample_annotation = ['00001_00029.ppm', '193', '191', '16', '17', '177', '4174', '14']
     data_set = '00014'
