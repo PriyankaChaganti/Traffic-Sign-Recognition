@@ -127,6 +127,13 @@ class MultiClassClassifier:
 
         return label
 
+    def get_all_classifier_labels(self,row):
+        results = {}
+        for eachclassifier in self.classifiers:
+            svm_label = get_svm_label(eachclassifier,row)
+            results['classifier_id'] = svm_label
+        return results
+
 if __name__ == "__main__":
     data_path = training_data_folder
     feature_path = hog3_path
@@ -135,3 +142,5 @@ if __name__ == "__main__":
     kernel_type = "linear"
     ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
     ml.build_classifier(training_data)
+    row = {'class_id':'1','feature_vector':[1, 2, 3]}
+    m1.get_svm_label(row)
