@@ -133,7 +133,6 @@ class MultiClassClassifier:
         for eachclassifier in self.classifiers:
             svm_label = self.get_svm_label(eachclassifier,row)
             results['classifier_id'] = svm_label
-            print(results)
         return results
 
 if __name__ == "__main__":
@@ -145,4 +144,6 @@ if __name__ == "__main__":
     ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
     #ml.build_classifier(training_data)
     row = training_data.data[0]
-    ml.get_all_classifier_labels(row)
+    results = ml.get_all_classifier_labels(row)
+    print(results)
+
