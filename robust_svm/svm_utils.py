@@ -53,7 +53,7 @@ if __name__ == "__main__":
    training_data = make_dataset(data_path, feature_path, data_set_list)
    kernel_type = "linear"
    ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
-   label_sum = test_classifier()
+   label_sum = test_classifier(None,)
 
 
 
