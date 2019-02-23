@@ -1,4 +1,5 @@
 from robust_svm.settings import *
+import numpy as np
 
 
 def get_successors(pixd,xlim,ylim):
@@ -71,3 +72,4 @@ if __name__ == "__main__":
     image_file_name = '00000_00000.ppm'
     features_folder_path = join(training_data_folder, hog3_path)
     hog_feature_data = read_feature_file(features_folder_path, data_class_id, image_file_name)
+
