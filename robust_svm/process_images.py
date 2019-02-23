@@ -48,7 +48,7 @@ def image_to_feature_vector(image):
 
 def read_feature_file(features_folder_path, data_class_id, image_file_name):
     """
-    The function reads an image and returns its corresponding feature file in the form of an array.
+    The function reads an image and returns its corresponding feature file in the form of a numpy array.
     :param: features_folder_path:The name of directory holding HOG Feature folders.(Example = '../data/training_data/Features_HOG/HOG_3' )
     :param data_class_id:The name of directory holding image_feature_filename. (Example = '00000')
     :param image_file_name:The name of image file.(Example = '00000_00001.ppm')
@@ -56,8 +56,13 @@ def read_feature_file(features_folder_path, data_class_id, image_file_name):
     """
     feature_filename = image_file_name.replace(".ppm",".txt")
     feature_file_path = join(features_folder_path, data_class_id, feature_filename)
-    hog_data_array = np.fromfile(feature_file_path)
+    with open(feature_file_path) as file:
+        hog_data_array = file.read().split()
+    for i in range(len(hog_data_array)):
+        hog_data_array[i] = float(hog_data_array[i])
+    hog_data_array = np.array(hog_data_array)
     return hog_data_array
+
 
 
 if __name__ == "__main__":

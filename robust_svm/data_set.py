@@ -33,6 +33,12 @@ class ImageDataset:
         row['class_id'] = class_id
         row['feature_vector'] = feature_vector
         self.data.append(row)
+        if class_id not in self.class_ids:
+            self.class_ids.append(class_id)
+
+
+
+
 
     def shuffle(self):
         """
@@ -69,4 +75,4 @@ if __name__ == '__main__':
     # Test ImageDataset.add_row()
     sample_class_id = '1'
     sample_feature_vector = [1, 2, 3]
-    im.add_row(sample_class_id, sample_feature_vector)
+    im.add_row(sample_class_id,sample_feature_vector)
