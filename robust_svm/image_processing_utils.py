@@ -210,7 +210,7 @@ def get_neighboring_points(x, y, x_lim, y_lim):
 
 
 if __name__ == "__main__":
-    #Test the function read_image_annotations
+    #Test the function read_feature_file
     features_folder_path = join(training_data_folder,hog3_path)
     data_class_id='00000'
     image_file_name ='00000_00000.ppm'
