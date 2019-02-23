@@ -89,7 +89,7 @@ class MultiClassClassifier:
         w = numpy.array([0] * len(training_data.data[0]['feature_vector']))
         t = 0
         for eachEpoch in range(self.epochs):
-            training_data.shuffle_indexes()
+            training_data.shuffle()
             print("in train classifier")
             for row in training_data.data:
                 label = check_image_class(row, training_class_id)
@@ -130,8 +130,9 @@ class MultiClassClassifier:
     def get_all_classifier_labels(self,row):
         results = {}
         for eachclassifier in self.classifiers:
-            svm_label = get_svm_label(eachclassifier,row)
+            svm_label = self.get_svm_label(eachclassifier,row)
             results['classifier_id'] = svm_label
+            print(results)
         return results
 
 if __name__ == "__main__":
@@ -142,5 +143,5 @@ if __name__ == "__main__":
     kernel_type = "linear"
     ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
     #ml.build_classifier(training_data)
-    row = {'class_id': '13', 'feature_vector':[0.0178014 , 0.00857185, 0.037246  , ..., 0.0305434 , 0.0267893 ,0.0627695 ]}
-    m1.get_all_classifier_labels(row)
+    row = {'class_id': '13', 'feature_vector':[0.0178014]}
+    ml.get_all_classifier_labels(row)
