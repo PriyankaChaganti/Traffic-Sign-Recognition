@@ -5,6 +5,7 @@ from robust_svm.read_images import *
 from robust_svm.process_images import *
 from robust_svm.data_set import *
 
+
 class MultiClassClassifier:
     """SVM-based multi class classifier"""
     def __init__(self, training_data, epochs, svm_params):
@@ -143,5 +144,5 @@ if __name__ == "__main__":
     kernel_type = "linear"
     ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
     #ml.build_classifier(training_data)
-    row = {'class_id': '13', 'feature_vector':[0.0178014]}
+    row = training_data.data[0]
     ml.get_all_classifier_labels(row)
