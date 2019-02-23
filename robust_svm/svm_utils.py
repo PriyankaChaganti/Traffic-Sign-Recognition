@@ -1,7 +1,8 @@
 import os
-from read_images import *
-from settings import *
+from robust_svm.read_images import *
+from robust_svm.settings import *
 from data_set import ImageDataset,AM
+from robust_svm.classifier import MultiClassClassifier
 
 
 def check_image_class(row, image_class):
@@ -23,6 +24,17 @@ def test_classifier(multi_class_classifier,test_data):
     :param test_data: 
     :return: 
     """
+    svm_label = {}
+    for eachrow in test_data:
+        svm_label = ml.get_all_classifier_labels(multi_class_classifier)
+        svm_label_values = svm_label.values()
+        label_sum = sum(svm_label_values)
+    return label_sum
+
+
+
+
+
 if __name__ == "__main__":
    row = {'class_id': '0', 'feature_vector': ([0.00134514, 0.00835472, 0.0826663 , ..., 0.0158771 , 0.137276  ,
        0.706723  ])}
@@ -33,3 +45,15 @@ if __name__ == "__main__":
    image_class = '2'
    var3= check_image_class(row, image_class)
    assert var3 == -1
+
+   row = {'0013': 1, '0015': 0, '0017':0}
+   data_path = training_data_folder
+   feature_path = hog3_path
+   data_set_list = ['00013', '00015']
+   training_data = make_dataset(data_path, feature_path, data_set_list)
+   kernel_type = "linear"
+   ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
+   label_sum = test_classifier()
+
+
+
