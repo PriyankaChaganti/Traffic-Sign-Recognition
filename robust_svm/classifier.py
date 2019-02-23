@@ -141,6 +141,6 @@ if __name__ == "__main__":
     training_data = make_dataset(data_path, feature_path, data_set_list)
     kernel_type = "linear"
     ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
-    ml.build_classifier(training_data)
-    row = {'class_id':'1','feature_vector':[1, 2, 3]}
-    m1.get_svm_label(row)
+    #ml.build_classifier(training_data)
+    row = {'class_id': '13', 'feature_vector':[0.0178014 , 0.00857185, 0.037246  , ..., 0.0305434 , 0.0267893 ,0.0627695 ]}
+    m1.get_all_classifier_labels(row)
