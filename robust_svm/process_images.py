@@ -1,4 +1,3 @@
-import numpy as np
 from robust_svm.settings import *
 
 
@@ -56,6 +55,7 @@ def read_feature_file(features_folder_path, data_class_id, image_file_name):
     """
     feature_filename = image_file_name.replace(".ppm",".txt")
     feature_file_path = join(features_folder_path, data_class_id, feature_filename)
+    
     with open(feature_file_path) as file:
         hog_data_array = file.read().split()
     for i in range(len(hog_data_array)):
