@@ -51,12 +51,11 @@ if __name__ == "__main__":
    data_path = training_data_folder
    feature_path = hog3_path
    data_set_list = ['00013', '00015']
-   training_data = make_dataset(data_path, feature_path, data_set_list)
+   training_data = pickle.load( open( "../data/dumps/training_data.p", "rb" ) )
    kernel_type = "linear"
    ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
-   training_data_unpickled = pickle.load( open( "../data/dumps/training_data.p", "rb" ) )
    test_data = join(test_data_folder,hog3_path)
-   label_sum = test_classifier(training_data_unpickled,test_data)
+   label_sum = test_classifier(training_data,test_data)
    print(label_sum)
 
 
