@@ -1,8 +1,7 @@
-import os
 from robust_svm.read_images import *
 from robust_svm.settings import *
-from data_set import ImageDataset,AM
-from robust_svm.classifier import MultiClassClassifier
+import pickle
+
 
 
 def check_image_class(row, image_class):
@@ -26,7 +25,7 @@ def test_classifier(multi_class_classifier,test_data):
     """
     svm_label = {}
     for eachrow in test_data:
-        svm_label = ml.get_all_classifier_labels(multi_class_classifier)
+        svm_label = ml.get_all_classifier_labels(eachrow)
         svm_label_values = svm_label.values()
         label_sum = sum(svm_label_values)
     return label_sum
@@ -36,6 +35,8 @@ def test_classifier(multi_class_classifier,test_data):
 
 
 if __name__ == "__main__":
+   from robust_svm.classifier import MultiClassClassifier
+
    row = {'class_id': '0', 'feature_vector': ([0.00134514, 0.00835472, 0.0826663 , ..., 0.0158771 , 0.137276  ,
        0.706723  ])}
    image_class = '0'
@@ -53,7 +54,9 @@ if __name__ == "__main__":
    training_data = make_dataset(data_path, feature_path, data_set_list)
    kernel_type = "linear"
    ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
-   label_sum = test_classifier(None,)
-
+   training_data_unpickled = pickle.load( open( "../data/dumps/training_data.p", "rb" ) )
+   test_data = join(test_data_folder,hog3_path)
+   label_sum = test_classifier(training_data_unpickled,test_data)
+   print(label_sum)
 
 
