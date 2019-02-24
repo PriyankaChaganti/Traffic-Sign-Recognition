@@ -208,6 +208,22 @@ def get_neighboring_points(x, y, x_lim, y_lim):
 
     return neighbors
 
+def image_to_array(image):
+    image = cv2.resize(image, (35,35) )
+    image_array = image.ravel()
+    binary_array = image_array > 0
+    binary_array = binary_array.astype(int)
+    return binary_array
+
+def image_to_feature_vector(dataset_path, annotation):
+    cropped_image = get_cropped_image(dataset_path, annotation)
+    thresholded_image = highlight_invariant_threshold(cropped_image)
+    filled_image = hole_fill(thresholded_image)
+    region_grown_image = grow_region(filled_image)
+    feature_vector = image_to_array(region_grown_image)
+    return feature_vector
+
+
 
 if __name__ == "__main__":
     #Test the function read_feature_file

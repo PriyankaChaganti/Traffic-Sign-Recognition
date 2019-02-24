@@ -31,6 +31,7 @@ class MultiClassClassifier:
         self.p3 = svm_params.get('p3', 3)
 
         # Build the classifier using training_data
+        print('Building the classifier using training data')
         self.build_classifier(training_data)
 
     def kernel(self, w, row):
@@ -70,7 +71,6 @@ class MultiClassClassifier:
         """
         for class_id in training_data.class_ids:
             w = self.train_classifier(training_data, class_id)
-            print("in build classifier")
             self.classifiers[class_id] = w
 
     def train_classifier(self, training_data, training_class_id):
@@ -89,7 +89,6 @@ class MultiClassClassifier:
         t = 0
         for eachEpoch in range(self.epochs):
             training_data.shuffle()
-            print("in train classifier")
             for row in training_data.data:
                 label = check_image_class(row, training_class_id)
                 rate = self.r0/(1 + ((self.r0*t)/self.C))
@@ -102,8 +101,8 @@ class MultiClassClassifier:
                 else:
                     delJ = w
 
-            w = w - (rate*delJ)
-            t = t + 1
+                w = w - (rate*delJ)
+                t = t + 1
         return w
 
     def get_svm_label(self, classifier_id, row):
@@ -128,7 +127,7 @@ class MultiClassClassifier:
 
     def get_all_classifier_labels(self,row):
         """
-        The function gets the lebel of the row for every classifier2 and returns the label as a dictionary.
+        The function gets the label of the row for every classifier and returns the label as a dictionary.
         :param row:The data point which has to be labelled.
         :return: results
         """
@@ -148,7 +147,8 @@ if __name__ == "__main__":
     feature_path = hog3_path
     data_set_list = ['00013', '00015']
     training_data = pickle.load(open(training_data_pickle_path, "rb"))
-    svmclassifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
+    #svmclassifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
+    svmclassifier = MultiClassClassifier(training_data,1,{'r0':1,'C':1,"kernel_type":'linear'})
     #ml.build_classifier(training_data)
     row = training_data.data[0]
     results = svmclassifier.get_all_classifier_labels(row)

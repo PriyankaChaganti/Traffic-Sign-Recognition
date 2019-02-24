@@ -61,8 +61,8 @@ def read_feature_file(features_folder_path, data_class_id, image_file_name):
         hog_data_array = file.read().split()
     for i in range(len(hog_data_array)):
         hog_data_array[i] = float(hog_data_array[i])
-    #hog_data_array = np.array(hog_data_array)
-    #print(hog_data_array)
+    # hog_data_array = [float(each_item) for each_item in hog_data_array]
+    hog_data_array = np.array(hog_data_array)
     return hog_data_array
 
 
@@ -73,4 +73,5 @@ if __name__ == "__main__":
     image_file_name = '00000_00000.ppm'
     features_folder_path = join(test_data_folder, hog3_path)
     hog_feature_data = read_feature_file(features_folder_path, data_class_id, image_file_name)
+    print(hog_feature_data)
 

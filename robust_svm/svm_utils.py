@@ -29,7 +29,6 @@ def determine_image_class(multiple_labels):
         for class_id, label in multiple_labels.items():
             if label == 1:
                 return class_id
-
     return None
 
 
@@ -40,12 +39,13 @@ def test_classifier(multi_class_classifier, test_data):
     :param: test_data:The data which has to be classified.
     :return:accuracy_results
     """
+    print('Testing the classifier')
     accuracy_results = {}
     for class_id in test_data.class_ids:
         accuracy_results[class_id] = {'right': 0, 'wrong': 0, 'total': 0}
 
     for eachRow in test_data.data:
-        results = multi_svm_classifier.get_all_classifier_labels(eachRow)
+        results = multi_class_classifier.get_all_classifier_labels(eachRow)
         classifier_output_class_id = determine_image_class(results)
         expected_class_id = eachRow['class_id']
 

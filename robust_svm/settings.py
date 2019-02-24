@@ -7,7 +7,10 @@ test_data_path = join("data", "test_data")
 dumps_path = join("data", "dumps")
 
 images_path = "Images"
+hog1_path = join("Features_HOG", "HOG_1")
+hog2_path = join("Features_HOG", "HOG_2")
 hog3_path = join("Features_HOG", "HOG_3")
+custom_features_path = "custom_features"
 
 training_data_folder = join(project_path, training_data_path)
 test_data_folder = join(project_path, test_data_path)
