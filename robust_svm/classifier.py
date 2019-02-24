@@ -147,8 +147,8 @@ if __name__ == "__main__":
     feature_path = hog3_path
     data_set_list = ['00013', '00015']
     training_data = pickle.load(open(training_data_pickle_path, "rb"))
-    #svmclassifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
-    svmclassifier = MultiClassClassifier(training_data,1,{'r0':1,'C':1,"kernel_type":'linear'})
+    svmclassifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
+    #svmclassifier = MultiClassClassifier(training_data,1,{'r0':1,'C':1,"kernel_type":'linear'})
     #ml.build_classifier(training_data)
     row = training_data.data[0]
     results = svmclassifier.get_all_classifier_labels(row)
