@@ -1,61 +1,34 @@
 from robust_svm.read_images import *
-from robust_svm.settings import *
+from robust_svm import settings
 import pickle
 
 
+def determine_image_class(multiple_labels):
+    labels_sum = sum(multiple_labels.values())
 
-def check_image_class(row, image_class):
-    """
-    The function should check if the row's class_id is the same as the parameter image_class.
-    :param row: Row from ImageDataset.(Example:{'class_id': '0', 'feature_vector': ([0.00134514 , 0.706723  ])})
-    :param image_class:The class_id of the images which checks if an image belongs to a particular class.
-    :return: 1/-1.
-    """
-    assert type(row['class_id']) == type(image_class)
-    if(row['class_id'] == image_class):
-        return 1
-    else:
-        return -1
-def test_classifier(multi_class_classifier,test_data):
-    """
-    
-    :param multi_class_classifier: 
-    :param test_data: 
-    :return: 
-    """
-    svm_label = {}
-    for eachrow in test_data:
-        svm_label = ml.get_all_classifier_labels(eachrow)
-        svm_label_values = svm_label.values()
-        label_sum = sum(svm_label_values)
-    return label_sum
+    if labels_sum == 1:
+        for class_id, label in multiple_labels.items():
+            if label == 1:
+                return class_id
+
+    return None
 
 
+def test_classifier(multi_class_classifier, test_data):
+    accuracy_results = {}
+    for class_id in test_data.class_ids:
+        accuracy_results[class_id] = {'right': 0, 'wrong': 0, 'total': 0}
 
+    for eachRow in test_data.data:
+        results = multi_class_classifier.get_all_classifier_labels(eachRow)
+        classifier_output_class_id = determine_image_class(results)
+        expected_class_id = eachRow['class_id']
 
+        if expected_class_id == classifier_output_class_id:
+            accuracy_results[expected_class_id]['right'] += 1
+        else:
+            accuracy_results[expected_class_id]['wrong'] += 1
 
-if __name__ == "__main__":
-   from robust_svm.classifier import MultiClassClassifier
+        accuracy_results[expected_class_id]['total'] += 1
 
-   row = {'class_id': '0', 'feature_vector': ([0.00134514, 0.00835472, 0.0826663 , ..., 0.0158771 , 0.137276  ,
-       0.706723  ])}
-   image_class = '0'
-   var2= check_image_class(row,image_class)
-   assert var2 ==1
-   row = {'class_id': '5', 'feature_vector': ([0.00134514, 0.00835472, 0.0826663 , 0.0158771 , 0.137276])}
-   image_class = '2'
-   var3= check_image_class(row, image_class)
-   assert var3 == -1
-
-   row = {'0013': 1, '0015': 0, '0017':0}
-   data_path = training_data_folder
-   feature_path = hog3_path
-   data_set_list = ['00013', '00015']
-   training_data = pickle.load( open( "../data/dumps/training_data.p", "rb" ) )
-   kernel_type = "linear"
-   ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
-   test_data = join(test_data_folder,hog3_path)
-   label_sum = test_classifier(training_data,test_data)
-   print(label_sum)
-
-
+    return accuracy_results
