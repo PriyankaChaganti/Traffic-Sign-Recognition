@@ -102,8 +102,8 @@ class MultiClassClassifier:
                 else:
                     delJ = w
 
-                w = w - (rate*delJ)
-                t = t + 1
+            w = w - (rate*delJ)
+            t = t + 1
         return w
 
     def get_svm_label(self, classifier_id, row):
@@ -127,22 +127,29 @@ class MultiClassClassifier:
         return label
 
     def get_all_classifier_labels(self,row):
+        """
+        The function gets the lebel of the row for every classifier2 and returns the label as a dictionary.
+        :param row:The data point which has to be labelled.
+        :return: results
+        """
 
         results = {}
         for eachclassifier in self.classifiers:
-            svm_label = self.get_svm_label(eachclassifier,row)
-            results['classifier_id'] = svm_label
+            svm_label = self.get_svm_label(eachclassifier, row)
+            results[eachclassifier] = svm_label
         return results
 
+
 if __name__ == "__main__":
-    data_path = training_data_folder
+    import pickle
+    import settings
+    training_data_pickle_path = join(settings.dumps_folder, "training_data.p")
+    multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
     feature_path = hog3_path
     data_set_list = ['00013', '00015']
-    training_data = make_dataset(data_path, feature_path, data_set_list)
-    kernel_type = "linear"
-    ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
+    training_data = pickle.load(open(training_data_pickle_path, "rb"))
+    svmclassifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
     #ml.build_classifier(training_data)
     row = training_data.data[0]
-    results = ml.get_all_classifier_labels(row)
+    results = svmclassifier.get_all_classifier_labels(row)
     print(results)
-
