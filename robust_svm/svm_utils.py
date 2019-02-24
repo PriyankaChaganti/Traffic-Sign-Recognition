@@ -20,7 +20,7 @@ def check_image_class(row, image_class):
 def determine_image_class(multiple_labels):
     """
     The function determines if the given image is classified to a particular class.
-    :param multiple_labels:Results Dictionary from test_classifier.
+    :param multiple_labels:Output of get_all_svm_labels.
     :return:class_id/None
     """
     labels_sum = sum(multiple_labels.values())
@@ -45,7 +45,7 @@ def test_classifier(multi_class_classifier, test_data):
         accuracy_results[class_id] = {'right': 0, 'wrong': 0, 'total': 0}
 
     for eachRow in test_data.data:
-        results = multi_class_classifier.get_all_classifier_labels(eachRow)
+        results = multi_svm_classifier.get_all_classifier_labels(eachRow)
         classifier_output_class_id = determine_image_class(results)
         expected_class_id = eachRow['class_id']
 
