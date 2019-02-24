@@ -1,8 +1,6 @@
 import numpy
 from robust_svm.svm_utils import check_image_class
-from robust_svm.settings import *
 from robust_svm.read_images import *
-from robust_svm.process_images import *
 from robust_svm.data_set import *
 
 
