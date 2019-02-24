@@ -209,6 +209,11 @@ def get_neighboring_points(x, y, x_lim, y_lim):
     return neighbors
 
 def image_to_array(image):
+    """
+    The function resizes the images and appends them into a binary array which has to be fed to the classifier.
+    :param image: The image on which the operations are done.
+    :return: binary_array
+    """
     image = cv2.resize(image, (35,35) )
     image_array = image.ravel()
     binary_array = image_array > 0
@@ -216,6 +221,12 @@ def image_to_array(image):
     return binary_array
 
 def image_to_feature_vector(dataset_path, annotation):
+    """
+    The function processes the given image.
+    :param dataset_path:The path to the given dataset.
+    :param annotation: The annotations of a given image.(Example:['00001_00029.ppm', '193', '191', '16', '17', '177', '4174', '14'])
+    :return: feature_vector
+    """
     cropped_image = get_cropped_image(dataset_path, annotation)
     thresholded_image = highlight_invariant_threshold(cropped_image)
     filled_image = hole_fill(thresholded_image)
