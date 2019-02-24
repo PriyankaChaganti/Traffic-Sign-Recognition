@@ -51,9 +51,15 @@ multi_svm_classifier = MultiClassClassifier(training_data, epochs, svm_params)
 pickle.dump(multi_svm_classifier, open(multi_svm_classifier_pickle_path, "wb"))
 # Comment the above two lines and uncomment the following line to avoid re-building
 # classifier
-# multi_svm_classifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
+# multi_svm_classifier = pickle.
+# load(open(multi_svm_classifier_pickle_path, "rb"))
 
 
 ###########################################################################################
 # Test Classifier
 ###########################################################################################
+multi_svm_classifier_pickle_path_test = join(settings.dumps_folder,'multi_svm_classifier_test.p')
+# Building classifier using test_data
+multi_svm_classifier_test = MultiClassClassifier(test_data,epochs,svm_params)
+pickle.dump(multi_svm_classifier_test,open(multi_svm_classifier_pickle_path_test,"wb"))
+#multi_svm_classifier_test = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))

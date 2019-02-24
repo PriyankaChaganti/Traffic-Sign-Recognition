@@ -127,6 +127,7 @@ class MultiClassClassifier:
         return label
 
     def get_all_classifier_labels(self,row):
+
         results = {}
         for eachclassifier in self.classifiers:
             svm_label = self.get_svm_label(eachclassifier,row)

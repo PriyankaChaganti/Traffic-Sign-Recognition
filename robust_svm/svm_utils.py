@@ -18,6 +18,11 @@ def check_image_class(row, image_class):
 
 
 def determine_image_class(multiple_labels):
+    """
+    The function determines if the given image is classified to a particular class.
+    :param multiple_labels:Results Dictionary from test_classifier.
+    :return:class_id/None
+    """
     labels_sum = sum(multiple_labels.values())
 
     if labels_sum == 1:
@@ -29,6 +34,12 @@ def determine_image_class(multiple_labels):
 
 
 def test_classifier(multi_class_classifier, test_data):
+    """
+    The function classifies test_data with the help of the classifier and also checks how accurately the images are classified.
+    :param: multi_class_classifier:The classifier which is trained with data.
+    :param: test_data:The data which has to be classified.
+    :return:accuracy_results
+    """
     accuracy_results = {}
     for class_id in test_data.class_ids:
         accuracy_results[class_id] = {'right': 0, 'wrong': 0, 'total': 0}
@@ -44,7 +55,6 @@ def test_classifier(multi_class_classifier, test_data):
             accuracy_results[expected_class_id]['wrong'] += 1
 
         accuracy_results[expected_class_id]['total'] += 1
-    print(accuracy_results)
     return accuracy_results
 
 
