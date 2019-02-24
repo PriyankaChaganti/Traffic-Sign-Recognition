@@ -1,11 +1,10 @@
-import cv2
-from os.path import join, isdir, isfile
+from os.path import join, isdir
 from os import listdir, mkdir
 
 from robust_svm.data_set import AM
 from robust_svm.image_processing_utils import image_to_feature_vector
 from robust_svm.read_images import read_image_annotations
-from robust_svm.settings import test_data_folder, training_data_folder, images_path
+from robust_svm.settings import training_data_folder, images_path
 
 data_path = training_data_folder
 
@@ -35,8 +34,3 @@ for dataset in datasets_list:
             with open(feature_file_path, "w") as f:
                 for each_val in feature_vector:
                     f.write(str(each_val) + "\n")
-
-
-
-
-

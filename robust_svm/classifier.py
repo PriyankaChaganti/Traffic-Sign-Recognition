@@ -1,6 +1,5 @@
 import numpy
 from robust_svm.svm_utils import check_image_class
-from robust_svm.read_images import *
 from robust_svm.data_set import *
 
 
@@ -8,8 +7,8 @@ class MultiClassClassifier:
     """SVM-based multi class classifier"""
     def __init__(self, training_data, epochs, svm_params):
         """
-        :param training_data: Data for training the svm classifier. Instance of ImageDataset class
-        :param epochs: Number of times the training data should be fed to the classifier
+        :param training_data: Data for training the svm classifier. Instance of ImageDataset class.
+        :param epochs: Number of times the training data should be fed to the classifier.
         :param svm_params: SVM parameters such as r0: rate of convergence, C: constant,
         kernel_type: type of the kernel used in the svm
         """
@@ -36,6 +35,7 @@ class MultiClassClassifier:
 
     def kernel(self, w, row):
         """
+        The function performs various operations based on the kernel selected.
         :param w: weights vector
         :param row: individual data point in the data
         :return: dot-product of weight vector and feature vector

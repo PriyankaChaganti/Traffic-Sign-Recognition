@@ -1,6 +1,5 @@
 import csv
 import os
-
 from robust_svm.data_set import *
 
 

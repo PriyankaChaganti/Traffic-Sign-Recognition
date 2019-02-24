@@ -1,5 +1,4 @@
 from os.path import join
-
 import pickle
 from robust_svm.classifier import MultiClassClassifier
 from robust_svm.read_images import make_dataset

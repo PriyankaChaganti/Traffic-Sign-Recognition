@@ -2,50 +2,6 @@ from robust_svm.settings import *
 import numpy as np
 
 
-def get_successors(pixd,xlim,ylim):
-    """
-    :param pixd:
-    :param xlim:
-    :param ylim:
-    :return:
-    """
-    
-def grow_region(image):
-    """
-
-    :param image:
-    :return:
-    """
-def hole_fill(image):
-    """
-
-    :param image:
-    :return:
-    """
-def get_seeds(pixel,xlim,ylim,image):
-    """
-
-    :param pixel:
-    :param xlim:
-    :param ylim:
-    :param image:
-    :return:
-    """
-def highlight_invariant_threashold(image):
-    """
-
-    :param image:
-    :return:
-    """
-
-def image_to_feature_vector(image):
-    """
-
-    :param image:
-    :return:
-    """
-
-
 def read_feature_file(features_folder_path, data_class_id, image_file_name):
     """
     The function reads an image and returns its corresponding feature file in the form of a numpy array.
@@ -59,9 +15,7 @@ def read_feature_file(features_folder_path, data_class_id, image_file_name):
     
     with open(feature_file_path) as file:
         hog_data_array = file.read().split()
-    for i in range(len(hog_data_array)):
-        hog_data_array[i] = float(hog_data_array[i])
-    # hog_data_array = [float(each_item) for each_item in hog_data_array]
+        hog_data_array = [float(each_item) for each_item in hog_data_array]
     hog_data_array = np.array(hog_data_array)
     return hog_data_array
 

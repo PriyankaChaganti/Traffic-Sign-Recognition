@@ -1,9 +1,9 @@
 import cv2
-from data_set import AM
+from robust_svm.data_set import AM
 from os.path import join
 import numpy as np
 from robust_svm.process_images import read_feature_file
-from settings import images_path, project_path, temp_folder,training_data_folder,hog3_path
+from robust_svm.settings import images_path, temp_folder, training_data_folder, hog3_path
 
 def get_cropped_image(dataset_path, annotation):
     """
@@ -224,8 +224,8 @@ def image_to_feature_vector(dataset_path, annotation):
     return feature_vector
 
 
-
 if __name__ == "__main__":
+
     #Test the function read_feature_file
     features_folder_path = join(training_data_folder,hog3_path)
     data_class_id='00000'

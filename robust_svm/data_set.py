@@ -1,5 +1,4 @@
 import numpy as np
-
 from robust_svm.process_images import read_feature_file
 from robust_svm.settings import *
 
@@ -35,10 +34,6 @@ class ImageDataset:
         self.data.append(row)
         if class_id not in self.class_ids:
             self.class_ids.append(class_id)
-
-
-
-
 
     def shuffle(self):
         """
