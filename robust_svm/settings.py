@@ -28,3 +28,10 @@ if __name__ == "__main__":
     assert isdir(join(test_data_folder, images_path)) is True
     assert isdir(join(training_data_folder, hog3_path))is True
     assert isdir(join(test_data_folder, hog3_path)) is True
+    assert isdir(join(training_data_folder, hog2_path))is True
+    assert isdir(join(test_data_folder, hog2_path)) is True
+    assert isdir(join(training_data_folder, hog1_path))is True
+    assert isdir(join(test_data_folder, hog1_path)) is True
+    assert isdir(join(training_data_folder, custom_features_path))is True
+    assert isdir(join(test_data_folder, custom_features_path)) is True
+
