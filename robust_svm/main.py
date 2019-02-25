@@ -51,10 +51,10 @@ multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classi
 # Build a classifier using the training_data
 print('Building the classifier using epochs={0} and svm_params={1}'.format(
     epochs, svm_params), end=' ')
-#multi_svm_classifier = MultiClassClassifier(training_data, epochs, svm_params)
-#pickle.dump(multi_svm_classifier, open(multi_svm_classifier_pickle_path, "wb"))
+multi_svm_classifier = MultiClassClassifier(training_data, epochs, svm_params)
+pickle.dump(multi_svm_classifier, open(multi_svm_classifier_pickle_path, "wb"))
 # Comment the above two lines and uncomment the following line to avoid re-building classifier
-multi_svm_classifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
+#multi_svm_classifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
 
 
 ##########################################################################################
@@ -63,5 +63,6 @@ multi_svm_classifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
 accuracy_results = test_classifier(multi_svm_classifier,test_data)
 print("Accuracy Results:")
 for class_id, results in accuracy_results.items():
-    results['accuracy_percentage'] = results['right'] / results['total']
+    results['accuracy_percentage'] = format((results['right'] / results['total'])*100,'.2f')
     print('class id: {}'.format(class_id), results)
+
