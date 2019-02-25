@@ -10,9 +10,9 @@ from robust_svm.svm_utils import determine_image_class
 
 def custom_feature_transformation(image_file_path):
     """
-
-    :param image_file_path:
-    :return:
+    The function reads the image and processes the image to extract the feature_vector of the image
+    :param image_file_path:The path which leads to the image.
+    :return:row
     """
     image = cv2.imread(image_file_path)
     thresholded_image = highlight_invariant_threshold(image)
