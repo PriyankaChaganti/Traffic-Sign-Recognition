@@ -1,8 +1,5 @@
 import numpy
 from robust_svm.svm_utils import check_image_class
-from robust_svm.settings import *
-from robust_svm.read_images import *
-from robust_svm.process_images import *
 from robust_svm.data_set import *
 
 
@@ -10,8 +7,8 @@ class MultiClassClassifier:
     """SVM-based multi class classifier"""
     def __init__(self, training_data, epochs, svm_params):
         """
-        :param training_data: Data for training the svm classifier. Instance of ImageDataset class
-        :param epochs: Number of times the training data should be fed to the classifier
+        :param training_data: Data for training the svm classifier. Instance of ImageDataset class.
+        :param epochs: Number of times the training data should be fed to the classifier.
         :param svm_params: SVM parameters such as r0: rate of convergence, C: constant,
         kernel_type: type of the kernel used in the svm
         """
@@ -33,10 +30,12 @@ class MultiClassClassifier:
         self.p3 = svm_params.get('p3', 3)
 
         # Build the classifier using training_data
+        print('Building the classifier using training data')
         self.build_classifier(training_data)
 
     def kernel(self, w, row):
         """
+        The function performs various operations based on the kernel selected.
         :param w: weights vector
         :param row: individual data point in the data
         :return: dot-product of weight vector and feature vector
@@ -72,7 +71,6 @@ class MultiClassClassifier:
         """
         for class_id in training_data.class_ids:
             w = self.train_classifier(training_data, class_id)
-            print("in build classifier")
             self.classifiers[class_id] = w
 
     def train_classifier(self, training_data, training_class_id):
@@ -91,7 +89,6 @@ class MultiClassClassifier:
         t = 0
         for eachEpoch in range(self.epochs):
             training_data.shuffle()
-            print("in train classifier")
             for row in training_data.data:
                 label = check_image_class(row, training_class_id)
                 rate = self.r0/(1 + ((self.r0*t)/self.C))
@@ -129,21 +126,30 @@ class MultiClassClassifier:
         return label
 
     def get_all_classifier_labels(self,row):
+        """
+        The function gets the label of the row for every classifier and returns the label as a dictionary.
+        :param row:The data point which has to be labelled.
+        :return: results
+        """
+
         results = {}
         for eachclassifier in self.classifiers:
-            svm_label = self.get_svm_label(eachclassifier,row)
-            results['classifier_id'] = svm_label
+            svm_label = self.get_svm_label(eachclassifier, row)
+            results[eachclassifier] = svm_label
         return results
 
+
 if __name__ == "__main__":
-    data_path = training_data_folder
+    import pickle
+    import settings
+    training_data_pickle_path = join(settings.dumps_folder, "training_data.p")
+    multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
     feature_path = hog3_path
     data_set_list = ['00013', '00015']
-    training_data = make_dataset(data_path, feature_path, data_set_list)
-    kernel_type = "linear"
-    ml = MultiClassClassifier(training_data,1,{"r0":1,"c":1,kernel_type:"linear"})
+    training_data = pickle.load(open(training_data_pickle_path, "rb"))
+    svmclassifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
+    #svmclassifier = MultiClassClassifier(training_data,1,{'r0':1,'C':1,"kernel_type":'linear'})
     #ml.build_classifier(training_data)
     row = training_data.data[0]
-    results = ml.get_all_classifier_labels(row)
+    results = svmclassifier.get_all_classifier_labels(row)
     print(results)
-

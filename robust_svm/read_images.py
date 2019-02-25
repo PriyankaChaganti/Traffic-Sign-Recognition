@@ -1,6 +1,5 @@
 import csv
 import os
-
 from robust_svm.data_set import *
 
 
@@ -19,7 +18,7 @@ def make_dataset(data_path, feature_path, data_set_list):
 
     #Iterates on the datasets in the dataset list
     for dataset in data_set_list:
-        print("Processing dataset {}".format(dataset))
+        print("Loading image features for dataset {0}".format(dataset))
         folder_path = join(images_folder_path, dataset)
         #Read the annotation file in the dataset
         annotated_data = read_image_annotations(folder_path, dataset)
@@ -28,7 +27,6 @@ def make_dataset(data_path, feature_path, data_set_list):
             folder_files = os.listdir(folder_path)
             if(eachann[AM.Filename] in folder_files):
                 im.add_image(dataset, eachann)
-        print("Done processing images in the dataset {}".format(dataset))
     return im
 
 

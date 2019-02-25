@@ -1,9 +1,9 @@
 import cv2
-from data_set import AM
+from robust_svm.data_set import AM
 from os.path import join
 import numpy as np
 from robust_svm.process_images import read_feature_file
-from settings import images_path, project_path, temp_folder,training_data_folder,hog3_path
+from robust_svm.settings import images_path, temp_folder, training_data_folder, hog3_path
 
 def get_cropped_image(dataset_path, annotation):
     """
@@ -208,8 +208,35 @@ def get_neighboring_points(x, y, x_lim, y_lim):
 
     return neighbors
 
+def image_to_array(image):
+    """
+    The function resizes the images and appends them into a binary array which has to be fed to the classifier.
+    :param image: The image on which the operations are done.
+    :return: binary_array
+    """
+    image = cv2.resize(image, (35,35) )
+    image_array = image.ravel()
+    binary_array = image_array > 0
+    binary_array = binary_array.astype(int)
+    return binary_array
+
+def image_to_feature_vector(dataset_path, annotation):
+    """
+    The function processes the given image.
+    :param dataset_path:The path to the given dataset.
+    :param annotation: The annotations of a given image.(Example:['00001_00029.ppm', '193', '191', '16', '17', '177', '4174', '14'])
+    :return: feature_vector
+    """
+    cropped_image = get_cropped_image(dataset_path, annotation)
+    thresholded_image = highlight_invariant_threshold(cropped_image)
+    filled_image = hole_fill(thresholded_image)
+    region_grown_image = grow_region(filled_image)
+    feature_vector = image_to_array(region_grown_image)
+    return feature_vector
+
 
 if __name__ == "__main__":
+
     #Test the function read_feature_file
     features_folder_path = join(training_data_folder,hog3_path)
     data_class_id='00000'
