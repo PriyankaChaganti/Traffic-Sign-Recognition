@@ -7,7 +7,10 @@ from robust_svm import settings
 from robust_svm.image_processing_utils import *
 from robust_svm.svm_utils import determine_image_class
 
-
+"""
+The file contains three sets of differently configured HOG features and a custom algorithm which preprocess the images.
+The accuracy is later compared for each algorithm.
+ """
 def custom_feature_transformation(image_file_path):
     """
     The function reads the image and processes the image to extract the feature_vector of the image
@@ -38,7 +41,7 @@ def hog_3_transformation():
 
 # Folder containing the random image
 random_images_path = join(settings.project_path, "data", "random_images")
-image_file_path = join(random_images_path, "yield.png")
+image_file_path = join(random_images_path, "STOP.jpg")
 
 # Load the multi-class classifier from dumps.
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
