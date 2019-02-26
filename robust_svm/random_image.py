@@ -1,3 +1,7 @@
+"""
+The file contains three sets of differently configured HOG features and a custom algorithm which preprocess the images.
+The accuracy is later compared for each algorithm.
+ """
 import cv2
 import numpy
 from os.path import join
@@ -7,10 +11,7 @@ from robust_svm import settings
 from robust_svm.image_processing_utils import *
 from robust_svm.svm_utils import determine_image_class
 
-"""
-The file contains three sets of differently configured HOG features and a custom algorithm which preprocess the images.
-The accuracy is later compared for each algorithm.
- """
+
 def custom_feature_transformation(image_file_path):
     """
     The function reads the image and processes the image to extract the feature_vector of the image
