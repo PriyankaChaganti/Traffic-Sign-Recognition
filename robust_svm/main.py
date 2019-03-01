@@ -41,8 +41,8 @@ test_data = pickle.load(open(test_data_pickle_path, "rb"))
 # Set the parameters for Multi-class Classifier
 epochs = 1
 svm_params = {
-    'r0': 1,
-    'C': 1,
+    'r0': 0.1,
+    'C': 0.1,
     'kernel_type': 'linear'
 }
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
