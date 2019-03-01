@@ -15,7 +15,7 @@ data_set_list = ['00013', '00015']
 
 # Set the type of image features that would be used for training ex: hog_1, hog_3,
 # custom_features etc.
-feature_path = settings.custom_features_path
+feature_path = settings.hog3_path
 
 # Set the path where the training data and test data would be stored as pickled objects
 training_data_pickle_path = join(settings.dumps_folder, "training_data.p")
@@ -23,10 +23,10 @@ test_data_pickle_path = join(settings.dumps_folder, "test_data.p")
 
 # Process the training images and load the training data
 print('Loading training data')
-#training_data = make_dataset(settings.training_data_folder, feature_path, data_set_list)
-#pickle.dump(training_data, open(training_data_pickle_path, "wb"))
+training_data = make_dataset(settings.training_data_folder, feature_path, data_set_list)
+pickle.dump(training_data, open(training_data_pickle_path, "wb"))
 # Comment the above two lines and uncomment the following line to avoid re-processing images
-training_data = pickle.load(open(training_data_pickle_path, "rb"))
+#training_data = pickle.load(open(training_data_pickle_path, "rb"))
 
 # Process the test images and load the test data
 print('Loading testing data')
@@ -34,7 +34,6 @@ print('Loading testing data')
 #pickle.dump(test_data, open(test_data_pickle_path, "wb"))
 # Comment the above two lines and uncomment the following line to avoid re-processing images
 test_data = pickle.load(open(test_data_pickle_path, "rb"))
-
 
 ###########################################################################################
 # Build Classifier

@@ -42,7 +42,7 @@ def hog_3_transformation():
 
 # Folder containing the random image
 random_images_path = join(settings.project_path, "data", "random_images")
-image_file_path = join(random_images_path, "STOP.jpg")
+image_file_path = join(random_images_path, "15.ppm")
 
 # Load the multi-class classifier from dumps.
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
