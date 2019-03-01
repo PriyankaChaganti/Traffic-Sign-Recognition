@@ -1,5 +1,9 @@
 import csv
-import os
+from functools import wraps
+from os import listdir
+from time import time
+
+
 from robust_svm.data_set import *
 
 
@@ -18,15 +22,18 @@ def make_dataset(data_path, feature_path, data_set_list):
 
     #Iterates on the datasets in the dataset list
     for dataset in data_set_list:
-        print("Loading image features for dataset {0}".format(dataset))
+        start_time = time()
         folder_path = join(images_folder_path, dataset)
         #Read the annotation file in the dataset
         annotated_data = read_image_annotations(folder_path, dataset)
         #Iterates on all annotations in the annotation file
         for eachann in annotated_data:
-            folder_files = os.listdir(folder_path)
+            folder_files = listdir(folder_path)
             if(eachann[AM.Filename] in folder_files):
                 im.add_image(dataset, eachann)
+        time_diff = time() - start_time
+        print("Loaded image features at {0} for dataset {1}. Time taken: {2} seconds".format(
+            feature_path, dataset, time_diff))
     return im
 
 
@@ -46,6 +53,18 @@ def read_image_annotations(folder_path, dataset_name):
         for row in csv_file_reader:
             annotated_data.append(row)
     return annotated_data
+
+
+def get_all_datasets(data_path):
+    """
+    Returns a list of all datasets in a data path
+    :param data_path: Path to training or test data (Ex:traffic_sign_svm\data\training_data)
+    :return: list of datasets (Ex: [00013, 00015])
+    """
+    images_folder = join(data_path, images_path)
+    all_files = listdir(images_folder)
+    all_datasets = [d for d in all_files if isdir(d)]
+    return all_datasets
 
 
 if __name__ == "__main__":

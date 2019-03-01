@@ -1,4 +1,6 @@
 import numpy
+from time import time
+
 from robust_svm.svm_utils import check_image_class
 from robust_svm.data_set import *
 
@@ -30,8 +32,10 @@ class MultiClassClassifier:
         self.p3 = svm_params.get('p3', 3)
 
         # Build the classifier using training_data
-        print('Building the classifier using training data')
+        start_time = time()
         self.build_classifier(training_data)
+        time_diff = time() - start_time
+        print('Time taken: {0} seconds'.format(time_diff))
 
     def kernel(self, w, row):
         """

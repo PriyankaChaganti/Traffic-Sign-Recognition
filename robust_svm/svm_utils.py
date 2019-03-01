@@ -39,7 +39,7 @@ def test_classifier(multi_class_classifier, test_data):
     :param: test_data:The data which has to be classified.
     :return:accuracy_results
     """
-    print('Testing the classifier')
+    print('\nTesting the classifier')
     accuracy_results = {}
     for class_id in test_data.class_ids:
         accuracy_results[class_id] = {'right': 0, 'wrong': 0, 'total': 0}
