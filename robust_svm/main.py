@@ -30,10 +30,10 @@ pickle.dump(training_data, open(training_data_pickle_path, "wb"))
 
 # Process the test images and load the test data
 print('Loading testing data')
-#test_data = make_dataset(settings.test_data_folder, feature_path, data_set_list)
-#pickle.dump(test_data, open(test_data_pickle_path, "wb"))
+test_data = make_dataset(settings.test_data_folder, feature_path, data_set_list)
+pickle.dump(test_data, open(test_data_pickle_path, "wb"))
 # Comment the above two lines and uncomment the following line to avoid re-processing images
-test_data = pickle.load(open(test_data_pickle_path, "rb"))
+#test_data = pickle.load(open(test_data_pickle_path, "rb"))
 
 ###########################################################################################
 # Build Classifier
@@ -42,7 +42,7 @@ test_data = pickle.load(open(test_data_pickle_path, "rb"))
 epochs = 100
 svm_params = {
     'r0': 0.1,
-    'C': 0.1,
+    'C': 0.9,
     'kernel_type': 'linear'
 }
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
