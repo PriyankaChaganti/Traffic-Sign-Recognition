@@ -18,7 +18,7 @@ class MultiClassClassifier:
         self.epochs = epochs  # Number of times data must be fed to the svm
         self.r0 = svm_params.get('r0', 0.6)  # Rate of convergence
         self.C = svm_params.get('C', 0.9)  # Constant
-        self.kernel_type = svm_params.get('kernel_type', 'linear')
+        self.kernel_type = svm_params.get('kernel_type', 'polynomial')
 
         # Sigmoid kernel parameters. These parameters are required only if
         # self.kernel_type is 'sigmoid'
@@ -56,7 +56,7 @@ class MultiClassClassifier:
 
         # Returns (c1 *(W.R) + c2)^c3
         if self.kernel_type == "polynomial":
-            y = (1*numpy.dot(numpy.transpose(w), row['feature_vector']) + 2)**3
+            y = (self.p1*numpy.dot(numpy.transpose(w), row['feature_vector']) + self.p2)**self.p3
             return y
 
     def build_classifier(self, training_data):
@@ -98,10 +98,7 @@ class MultiClassClassifier:
                 rate = self.r0/(1 + ((self.r0*t)/self.C))
 
                 if label*self.kernel(w, row) <= 1:
-                    try:
                         delJ = w - (self.C*(label*row['feature_vector']))
-                    except ValueError as ex:
-                        pass
                 else:
                     delJ = w
 

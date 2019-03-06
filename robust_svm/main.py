@@ -11,7 +11,7 @@ from robust_svm.svm_utils import test_classifier
 # Data Processing
 ########################################################################################
 # Compile a list of datasets that would be used for training and testing the classifier
-data_set_list = ['00013', '00015']
+data_set_list = ['00013', '00015', '00017']
 
 # Set the type of image features that would be used for training ex: hog_1, hog_3,
 # custom_features etc.
@@ -23,10 +23,10 @@ test_data_pickle_path = join(settings.dumps_folder, "test_data.p")
 
 # Process the training images and load the training data
 print('Loading training data')
-training_data = make_dataset(settings.training_data_folder, feature_path, data_set_list)
-pickle.dump(training_data, open(training_data_pickle_path, "wb"))
+#training_data = make_dataset(settings.training_data_folder, feature_path, data_set_list)
+#pickle.dump(training_data, open(training_data_pickle_path, "wb"))
 # Comment the above two lines and uncomment the following line to avoid re-processing images
-#training_data = pickle.load(open(training_data_pickle_path, "rb"))
+training_data = pickle.load(open(training_data_pickle_path, "rb"))
 
 # Process the test images and load the test data
 print('Loading testing data')
@@ -41,9 +41,9 @@ test_data = pickle.load(open(test_data_pickle_path, "rb"))
 # Set the parameters for Multi-class Classifier
 epochs = 100
 svm_params = {
-    'r0': 0.2,
-    'C': 0.9,
-    'kernel_type': 'linear'
+    'r0': 0.7,
+    'C': 0.2,
+    'kernel_type': 'polynomial'
 }
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
 
