@@ -11,12 +11,12 @@ from robust_svm.svm_utils import test_classifier
 # Data Processing
 ########################################################################################
 # Compile a list of datasets that would be used for training and testing the classifier
-data_set_list = ['00013','00015','00017']
+data_set_list = ['00013','00014','00015','00017','00019']
 num_dataset_list = len(data_set_list)
 
 # Set the type of image features that would be used for training ex: hog_1, hog_3,
 # custom_features etc.
-feature_path = settings.custom_features_2_path
+feature_path = settings.hog3_path
 
 # Set the path where the training data and test data would be stored as pickled objects
 training_data_pickle_path = join(settings.dumps_folder, "training_data.p")
@@ -43,7 +43,7 @@ pickle.dump(test_data, open(test_data_pickle_path, "wb"))
 epochs = 100
 svm_params = {
     'r0': 0.5,
-    'C': 1,
+    'C': 100,
     'kernel_type': 'linear'
 }
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')

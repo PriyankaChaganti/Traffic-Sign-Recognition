@@ -13,7 +13,7 @@ from robust_svm.svm_utils import test_classifier
 # Data Processing
 ########################################################################################
 # Compile a list of datasets that would be used for training and testing the classifier
-data_set_list = ['00013', '00015','00017']
+data_set_list = ['00013','00014','00015','00017','00019']
 
 # Set the type of image features that would be used for training ex: hog_1, hog_3,
 # custom_features etc.
