@@ -11,6 +11,7 @@ hog1_path = join("Features_HOG", "HOG_1")
 hog2_path = join("Features_HOG", "HOG_2")
 hog3_path = join("Features_HOG", "HOG_3")
 custom_features_path = "custom_features"
+custom_features_2_path = "custom_features_2"
 
 training_data_folder = join(project_path, training_data_path)
 test_data_folder = join(project_path, test_data_path)

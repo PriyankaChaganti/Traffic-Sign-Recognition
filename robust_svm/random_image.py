@@ -28,30 +28,42 @@ def custom_feature_transformation(image_file_path):
     return row
 
 
-def hog_1_transformation():
-    pass
+def hog_transformation(image_path):
+    img = cv2.imread(image_path)
+    img = cv2.resize(img, (40, 40))
 
+    winSize = (40, 40)
+    blockSize = (5, 5)
+    blockStride = (5, 5)
+    cellSize = (5, 5)
+    nbins = 8
+    derivAperture = 1
+    winSigma = 4.
+    histogramNormType = 0
+    L2HysThreshold = 2.0000000000000001e-01
+    gammaCorrection = True
 
-def hog_2_transformation():
-    pass
-
-
-def hog_3_transformation():
-    pass
+    hog = cv2.HOGDescriptor(winSize, blockSize, blockStride, cellSize, nbins, derivAperture,
+                            winSigma, histogramNormType, L2HysThreshold, gammaCorrection)
+    hist = hog.compute(img)
+    feature_vector = hist.ravel()
+    return feature_vector
 
 
 # Folder containing the random image
 random_images_path = join(settings.project_path, "data", "random_images")
-image_file_path = join(random_images_path, "15.ppm")
+image_file_path = join(random_images_path, "STOP.jpg")
 
 # Load the multi-class classifier from dumps.
-multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
+multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'demo_multi_svm_classifier.p')
 multi_svm_classifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
 
 # Transform the image into the feature that was used while building the classifier
 row = custom_feature_transformation(image_file_path)
+#row = hog_transformation(image_file_path)
+
 
 # Classify the image using multi-class classifier
-all_labels = multi_svm_classifier.get_all_classifier_labels(row)
-class_id = determine_image_class(all_labels)
-print('The Multi-class SVM classifer has classified the image as {0}'.format(class_id))
+predicted_labels = multi_svm_classifier.predict([row])
+label = predicted_labels.tolist()[0]
+print('The Multi-class SVM classifer has classified the image as {0}'.format(label))

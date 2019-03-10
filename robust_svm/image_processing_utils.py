@@ -5,6 +5,7 @@ import numpy as np
 from robust_svm.process_images import read_feature_file
 from robust_svm.settings import images_path, temp_folder, training_data_folder, hog3_path
 
+
 def get_cropped_image(dataset_path, annotation):
     """
     Crops the images based on annotations
@@ -220,6 +221,7 @@ def image_to_array(image):
     binary_array = binary_array.astype(int)
     return binary_array
 
+
 def image_to_feature_vector(dataset_path, annotation):
     """
     The function processes the given image.
@@ -235,18 +237,52 @@ def image_to_feature_vector(dataset_path, annotation):
     return feature_vector
 
 
+def hog_transformation(dataset_path, annotation):
+    # Get the x,y co-ordinates of region of interest
+    ROIY1 = int(annotation[AM.ROIy1])
+    ROIX1 = int(annotation[AM.ROIx1])
+    ROIY2 = int(annotation[AM.ROIy2])
+    ROIX2 = int(annotation[AM.ROIx2])
+
+    # Get the image filename
+    image_filename = annotation[AM.Filename]
+    image_path = join(dataset_path, image_filename)
+    img = cv2.imread(image_path)
+
+    # Copy the image into a new variable
+    img = img[ROIY1:ROIY2, ROIX1:ROIX2].copy()
+    img = cv2.resize(img, (40, 40))
+
+    winSize = (40, 40)
+    blockSize = (5, 5)
+    blockStride = (5, 5)
+    cellSize = (5, 5)
+    nbins = 8
+    derivAperture = 1
+    winSigma = 4.
+    histogramNormType = 0
+    L2HysThreshold = 2.0000000000000001e-01
+    gammaCorrection = True
+
+    hog = cv2.HOGDescriptor(winSize, blockSize, blockStride, cellSize, nbins, derivAperture,
+                            winSigma, histogramNormType, L2HysThreshold, gammaCorrection)
+    hist = hog.compute(img)
+    feature_vector = hist.ravel()
+    return feature_vector
+
+
 if __name__ == "__main__":
 
     #Test the function read_feature_file
     features_folder_path = join(training_data_folder,hog3_path)
-    data_class_id='00000'
-    image_file_name ='00000_00000.ppm'
-    hog_feature_data= read_feature_file(features_folder_path, data_class_id, image_file_name)
+    data_class_id = '00000'
+    image_file_name = '00000_00000.ppm'
+    hog_feature_data = read_feature_file(features_folder_path, data_class_id, image_file_name)
     #print(hog_feature_data)
 
     sample_annotation = ['00001_00029.ppm', '193', '191', '16', '17', '177', '4174', '14']
     data_set = '00014'
-    dataset_path = join(training_data_folder,images_path, data_set)
+    dataset_path = join(training_data_folder, images_path, data_set)
     image_filename = sample_annotation[0]
     image_path = join(dataset_path, image_filename)
 
