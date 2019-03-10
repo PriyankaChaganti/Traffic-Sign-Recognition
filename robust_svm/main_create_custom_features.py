@@ -13,7 +13,7 @@ for data_path in data_paths:
     images_folder = join(data_path, images_path)
     features_folder = join(data_path, 'custom_features_2')
     # datasets_list = get_all_datasets(data_path)
-    datasets_list = ['00013', '00015']
+    datasets_list = ['00013', '00015', '00017']
     for dataset in datasets_list:
         image_dataset_path = join(images_folder, dataset)
         feature_dataset_path = join(features_folder, dataset)

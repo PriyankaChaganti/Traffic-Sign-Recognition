@@ -11,7 +11,8 @@ from robust_svm.svm_utils import test_classifier
 # Data Processing
 ########################################################################################
 # Compile a list of datasets that would be used for training and testing the classifier
-data_set_list = ['00013','00015']
+data_set_list = ['00013','00015','00017']
+num_dataset_list = len(data_set_list)
 
 # Set the type of image features that would be used for training ex: hog_1, hog_3,
 # custom_features etc.
@@ -42,7 +43,7 @@ pickle.dump(test_data, open(test_data_pickle_path, "wb"))
 epochs = 100
 svm_params = {
     'r0': 0.5,
-    'C': 100,
+    'C': 1,
     'kernel_type': 'linear'
 }
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'multi_svm_classifier.p')
@@ -64,7 +65,7 @@ print("Accuracy Results:")
 sum = 0
 for class_id, results in accuracy_results.items():
     results['accuracy_percentage'] = format((results['right'] / results['total'])*100,'.2f')
-    sum =  sum + float(format((results['right'] / results['total'])*100,'.2f'))
+    results_sum =  results_sum + float(format((results['right'] / results['total'])*100,'.2f'))
     print('class id: {}'.format(class_id), results)
-overall_average = format(sum/5,'.2f')
+overall_average = format(results_sum/num_dataset_list,'.2f')
 print(overall_average)

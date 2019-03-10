@@ -52,15 +52,15 @@ def hog_transformation(image_path):
 
 # Folder containing the random image
 random_images_path = join(settings.project_path, "data", "random_images")
-image_file_path = join(random_images_path, "stop.jpg")
+image_file_path = join(random_images_path, "STOP.jpg")
 
 # Load the multi-class classifier from dumps.
 multi_svm_classifier_pickle_path = join(settings.dumps_folder, 'demo_multi_svm_classifier.p')
 multi_svm_classifier = pickle.load(open(multi_svm_classifier_pickle_path, "rb"))
 
 # Transform the image into the feature that was used while building the classifier
-# row = custom_feature_transformation(image_file_path)
-row = hog_transformation(image_file_path)
+row = custom_feature_transformation(image_file_path)
+#row = hog_transformation(image_file_path)
 
 
 # Classify the image using multi-class classifier
