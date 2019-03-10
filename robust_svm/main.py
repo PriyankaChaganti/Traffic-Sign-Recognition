@@ -62,7 +62,7 @@ pickle.dump(multi_svm_classifier, open(multi_svm_classifier_pickle_path, "wb"))
 ###########################################################################################
 accuracy_results = test_classifier(multi_svm_classifier,test_data)
 print("Accuracy Results:")
-sum = 0
+results_sum = 0
 for class_id, results in accuracy_results.items():
     results['accuracy_percentage'] = format((results['right'] / results['total'])*100,'.2f')
     results_sum =  results_sum + float(format((results['right'] / results['total'])*100,'.2f'))
